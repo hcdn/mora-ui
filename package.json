@@ -1,8 +1,8 @@
 {
   "name": "mora-ui",
   "version": "1.0.0",
-  "description": "Made with create-react-library",
-  "author": "Honorable Cámara de Diputados de la Nación",
+  "description": "mora-ui es una librería de React para desarrollar sistemas de la Honorable Cámara de Diputados de la Nación.",
+  "author": "Secretaría General de la Presidencia - Honorable Cámara de Diputados de la Nación",
   "license": "MIT",
   "repository": "hcdn/mora-ui",
   "main": "dist/index.js",
@@ -21,7 +21,9 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "peerDependencies": {
     "react": "^16.0.0"
@@ -55,7 +57,30 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "@storybook/addon-actions": "^6.3.4",
+    "@storybook/addon-essentials": "^6.3.4",
+    "@storybook/addon-links": "^6.3.4",
+    "@storybook/node-logger": "^6.3.4",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.4",
+    "storybook-addon-designs": "^6.0.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   },
   "files": [
     "dist"
