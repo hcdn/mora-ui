@@ -1,35 +1,7 @@
 // <3 Based on https://next.material-ui.com/customization/default-theme/?expand-path=$.palette
 
-// Main colors are used as "named" primary colors for the interface
-export interface MainColorType {
-  main: string
-  light: string
-  dark: string
-  contrastText: string
-}
-export interface MainColorCreatorType {
-  main: string
-  light?: string
-  dark?: string
-  contrastText?: string
-}
-// Base colors of the App
-export interface StepColorType {
-  50: string
-  100: string
-  200: string
-  300: string
-  400: string
-  500: string
-  600: string
-  700: string
-  800: string
-  900: string
-  A100: string
-  A200: string
-  A400: string
-  A700: string
-}
+import { MainColorType, StepColorType } from '../colors/colorsTypes'
+
 // Colors for actions
 export interface ActionColorType {
   active: string

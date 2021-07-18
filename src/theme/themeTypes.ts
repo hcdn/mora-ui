@@ -1,4 +1,4 @@
-import { PalleteType } from './palleteTypes'
+import { PalleteType } from './pallete/palleteTypes'
 
 export interface ThemeType {
   pallete: PalleteType

@@ -1,4 +1,4 @@
-import { defaultPallete } from './pallete'
+import { defaultPallete } from './pallete/pallete'
 import { ThemeType } from './themeTypes'
 
 export const defaultLightTheme: ThemeType = {
