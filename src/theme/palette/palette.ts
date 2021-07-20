@@ -1,8 +1,8 @@
 import { createMainColor, createRangeColor } from '../colors/colors'
-import { PalleteType } from './palleteTypes'
+import { PaletteType } from './paletteTypes'
 
-// defaut pallete
-export const defaultPallete: PalleteType = {
+// defaut palette
+export const defaultLightPalette: PaletteType = {
   type: 'light',
   primary: createMainColor({ main: '#1976d2' }),
   secondary: createMainColor({ main: '#9c27b0' }),

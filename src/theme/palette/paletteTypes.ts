@@ -9,8 +9,8 @@ export interface ActionColorType {
   selected: string
   disabled: string
 }
-// Complete default pallete
-export interface PalleteType {
+// Complete default palette
+export interface PaletteType {
   type: 'light' | 'dark'
   primary: MainColorType
   secondary: MainColorType
