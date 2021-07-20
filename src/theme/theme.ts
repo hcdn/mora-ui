@@ -1,6 +1,6 @@
 import { defaultElevations } from './elevations/elevations'
 import { defaultLightPalette } from './palette/palette'
-import { defaultSpacing } from './spacing/spacing'
+import { defaultSizing } from './sizing/sizing'
 import { ThemeType } from './themeTypes'
 
 export const defaultLightTheme: ThemeType = {
@@ -13,7 +13,7 @@ export const defaultLightTheme: ThemeType = {
     lg: '976px',
     xl: '1440px'
   },
-  spacing: defaultSpacing,
+  sizing: defaultSizing,
   elevations: defaultElevations
 }
 
@@ -27,6 +27,6 @@ export const defaultDarkTheme: ThemeType = {
     lg: '976px',
     xl: '1440px'
   },
-  spacing: defaultSpacing,
+  sizing: defaultSizing,
   elevations: defaultElevations
 }

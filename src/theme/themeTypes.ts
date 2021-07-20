@@ -1,6 +1,6 @@
 import { ElevationsType } from './elevations/elevationsTypes'
 import { PaletteType } from './palette/paletteTypes'
-import { SpacingType } from './spacing/spacingTypes'
+import { SizingType } from './sizing/sizingTypes'
 
 export interface ThemeType {
   name?: string
@@ -12,6 +12,6 @@ export interface ThemeType {
     lg: string
     xl: string
   }
-  spacing: SpacingType
+  sizing: SizingType
   elevations: ElevationsType
 }
