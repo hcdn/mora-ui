@@ -1,41 +1,10 @@
-import React, { useRef, useState } from 'react'
-import styled, { css, keyframes } from 'styled-components'
-
-const clickEffectAnimation = keyframes`
-	0% {
-		opacity: 0.2;
-		width: 50%;
-	}
-	70% {
-		opacity: 0;
-	}
-	100% {
-		width: 100%;
-		top: 50%;
-		left: 50%;
-	}
-`
-export const ClickEffectContainer = styled.div<{ active: boolean }>`
-  ${({ active }) =>
-    active &&
-    css`
-      position: absolute;
-      filter: blur(0.2rem);
-      pointer-events: none;
-      animation-fill-mode: forwards;
-      opacity: 0;
-      animation: ${clickEffectAnimation} 0.3s ease-out;
-      &:before {
-        content: '';
-        transform: translate(-100%, -50%);
-        border-radius: 50%;
-        position: absolute;
-        width: 100%;
-        padding-top: 100%;
-        background-color: white;
-      }
-    `}
-`
+import React, { useState } from 'react'
+import { ClickEffectContainer } from './rippleStyles'
+import {
+  ClickEffectProps,
+  rippleFromEventType,
+  rippleFromPositionType
+} from './rippleTypes'
 
 const getElementPositions = (elmentRef: React.MutableRefObject<any>) => {
   return {
@@ -46,14 +15,13 @@ const getElementPositions = (elmentRef: React.MutableRefObject<any>) => {
   }
 }
 
-type rippleFromEventType = (e: any) => void
-type rippleFromPositionType = (x: number, y: number) => void
-
-// Ripple hook for components
+/**
+ * Ripple effect hook for components.
+ */
 export const useRipple = (
   containerRef: React.MutableRefObject<any>
 ): [
-  React.FC,
+  React.FC<ClickEffectProps>,
   React.RefObject<any>,
   rippleFromEventType,
   rippleFromPositionType
@@ -61,6 +29,9 @@ export const useRipple = (
   const [effectPos, setEffectPos] = useState<
     { top: number; left: number; key: string } | false
   >(false)
+  /**
+   * Create a ripple from a click event.
+   */
   const rippleFromEvent = (e: any) => {
     const positions = getElementPositions(containerRef)
     const left = e.pageX - positions.left
@@ -68,7 +39,9 @@ export const useRipple = (
     const key = Math.random().toString()
     setEffectPos({ top, left, key })
   }
-  // Create a ripple from a x=0-100% y=0-100% position
+  /**
+   * Create a ripple from a x=0-100% y=0-100% position.
+   */
   const rippleFromPosition = (x: number = 50, y: number = 50) => {
     const positions = getElementPositions(containerRef)
     const left = ((positions.left + positions.width) / 100) * x
@@ -76,7 +49,10 @@ export const useRipple = (
     const key = Math.random().toString()
     setEffectPos({ top, left, key })
   }
-  const ClickEffect = () => (
+  /**
+   * Component controlled by hook, renders the ripple.
+   */
+  const ClickEffect: React.FC<ClickEffectProps> = ({ color = 'white' }) => (
     <ClickEffectContainer
       style={{
         top: effectPos ? effectPos.top : 0,
@@ -84,6 +60,7 @@ export const useRipple = (
       }}
       key={effectPos ? effectPos.key : 0}
       active={!!effectPos}
+      color={color}
     />
   )
   return [ClickEffect, containerRef, rippleFromEvent, rippleFromPosition]
