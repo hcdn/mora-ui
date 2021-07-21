@@ -2,6 +2,11 @@ import { defaultElevations } from './elevations/elevations'
 import { defaultLightPalette } from './palette/palette'
 import { defaultSizing } from './sizing/sizing'
 import { ThemeType } from './themeTypes'
+import 'styled-components'
+
+declare module 'styled-components' {
+  export interface DefaultTheme extends ThemeType {}
+}
 
 export const defaultLightTheme: ThemeType = {
   name: 'lightTheme',
