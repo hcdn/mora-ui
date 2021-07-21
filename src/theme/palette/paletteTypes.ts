@@ -1,33 +1,36 @@
 // <3 Based on https://next.material-ui.com/customization/default-theme/?expand-path=$.palette
 
-import { MainColorType, StepColorType } from '../colors/colorsTypes'
+import {
+  ActionColorType,
+  MainColorType,
+  StepColorType,
+  TextColorsType
+} from '../colors/colorsTypes'
 
-// Colors for actions
-export interface ActionColorType {
-  active: string
-  hover: string
-  selected: string
-  disabled: string
-}
 // Complete default palette
 export interface PaletteType {
   type: 'light' | 'dark'
-  primary: MainColorType
-  secondary: MainColorType
-  error: MainColorType
-  success: MainColorType
-  warning: MainColorType
-  info: MainColorType
-  grey: StepColorType
+  main: {
+    primary: MainColorType
+    secondary: MainColorType
+    error: MainColorType
+    success: MainColorType
+    warning: MainColorType
+    info: MainColorType
+  }
+  colors: {
+    blue: StepColorType
+    red: StepColorType
+    green: StepColorType
+    grey: StepColorType
+  }
   background: {
     primary: MainColorType
     secondary: MainColorType
   }
   text: {
-    primary: string
-    secondary: string
-    disabled: string
-    link: string
+    light: TextColorsType
+    dark: TextColorsType
   }
   // Line used to divide things
   divider: string

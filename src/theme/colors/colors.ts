@@ -1,26 +1,42 @@
 import {
   MainColorType,
   MainColorCreatorType,
-  StepColorType
+  StepColorType,
+  TextColorsType
 } from './colorsTypes'
 
 import chroma, { Color, Scale } from 'chroma-js'
 
-export const createMainColor = (color: MainColorCreatorType): MainColorType => {
+export const createMainColor = (
+  color: MainColorCreatorType,
+  lightText: TextColorsType,
+  darkText: TextColorsType
+): MainColorType => {
+  const mainColor = chroma(color.main)
   return {
     main: color.main,
-    light: color.light ?? 'default',
-    dark: color.dark ?? 'default',
-    contrastText: color.contrastText ?? 'default'
+    light: color.light ?? mainColor.brighten().hex(),
+    dark: color.dark ?? mainColor.darken().hex(),
+    contrastText:
+      color.contrastText ??
+      getContrastText(color.main, lightText, darkText).primary
   }
+}
+
+// Used to generate the theme
+
+const getContrastText = (
+  color: string,
+  lightText: TextColorsType,
+  darkText: TextColorsType
+): TextColorsType => {
+  return chroma(color).luminance() > 0.5 ? lightText : darkText
 }
 
 const generateChromaGradient = (color: string): Scale<Color> => {
   const realColorLuminance = chroma(color).luminance() * 10
   // Round color position
   const roundedColorLuminance = Math.round(realColorLuminance)
-  // console.log({ realColorLuminance })
-  // console.log({ roundedColorLuminance })
 
   return chroma
     .scale(['white', color, 'black'])
@@ -29,7 +45,6 @@ const generateChromaGradient = (color: string): Scale<Color> => {
 
 export const createRangeColor = (color: string): StepColorType => {
   const gradient = generateChromaGradient(color)
-  // const colors = gradient.classes(11)
   const colors = gradient.colors(13)
   return {
     0: colors[1],

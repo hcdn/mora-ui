@@ -1,28 +1,60 @@
 import { createMainColor, createRangeColor } from '../colors/colors'
+import { TextColorsType } from '../colors/colorsTypes'
 import { PaletteType } from './paletteTypes'
 
+const defaultLightText: TextColorsType = {
+  primary: 'white',
+  secondary: 'rgba(255, 255, 255, 0.6)',
+  disabled: 'rgba(255, 255, 255, 0.38)',
+  link: '#1976d2'
+}
+const defaultDarkText: TextColorsType = {
+  primary: 'rgba(0, 0, 0, 0.87)',
+  secondary: 'rgba(0, 0, 0, 0.6)',
+  disabled: 'rgba(0, 0, 0, 0.38)',
+  link: '#1976d2'
+}
 // defaut palette
 export const defaultLightPalette: PaletteType = {
   type: 'light',
-  primary: createMainColor({ main: '#1976d2' }),
-  secondary: createMainColor({ main: '#9c27b0' }),
-  error: createMainColor({ main: '#d32f2f' }),
-  success: createMainColor({ main: '#2e7d32' }),
-  warning: createMainColor({ main: '#ED6C02' }),
-  info: createMainColor({ main: '#0288d1' }),
-  // grey: {
-  //   50: '#fafafa',
-  //   100: '#f5f5f5',
-  //   200: '#eeeeee',
-  //   300: '#e0e0e0',
-  //   400: '#bdbdbd',
-  //   500: '#9e9e9e',
-  //   600: '#757575',
-  //   700: '#616161',
-  //   800: '#424242',
-  //   900: '#212121'
-  // },
-  grey: createRangeColor('#9e9e9e'),
+  main: {
+    primary: createMainColor(
+      { main: '#1976d2' },
+      defaultLightText,
+      defaultDarkText
+    ),
+    secondary: createMainColor(
+      { main: '#9c27b0' },
+      defaultLightText,
+      defaultDarkText
+    ),
+    error: createMainColor(
+      { main: '#d32f2f' },
+      defaultLightText,
+      defaultDarkText
+    ),
+    success: createMainColor(
+      { main: '#2e7d32' },
+      defaultLightText,
+      defaultDarkText
+    ),
+    warning: createMainColor(
+      { main: '#ED6C02' },
+      defaultLightText,
+      defaultDarkText
+    ),
+    info: createMainColor(
+      { main: '#0288d1' },
+      defaultLightText,
+      defaultDarkText
+    )
+  },
+  colors: {
+    blue: createRangeColor('#1976d2'),
+    red: createRangeColor('#d32f2f'),
+    green: createRangeColor('#9e9e9e'),
+    grey: createRangeColor('#9e9e9e')
+  },
   background: {
     primary: {
       main: '#ffffff',
@@ -38,10 +70,8 @@ export const defaultLightPalette: PaletteType = {
     }
   },
   text: {
-    primary: 'rgba(0, 0, 0, 0.87)',
-    secondary: 'rgba(0, 0, 0, 0.6)',
-    disabled: 'rgba(0, 0, 0, 0.38)',
-    link: '#1976d2'
+    light: defaultLightText,
+    dark: defaultDarkText
   },
   divider: 'rgba(0, 0, 0, 0.12)',
   action: {

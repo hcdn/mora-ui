@@ -25,3 +25,16 @@ export interface StepColorType {
   9: string
   10: string
 }
+export interface TextColorsType {
+  primary: string
+  secondary: string
+  disabled: string
+  link: string
+}
+// Colors for actions
+export interface ActionColorType {
+  active: string
+  hover: string
+  selected: string
+  disabled: string
+}
