@@ -1,26 +1,79 @@
-import React, { Component, FunctionComponent, MouseEventHandler } from 'react'
+import React, {
+  Component,
+  FunctionComponent,
+  MouseEventHandler,
+  useContext,
+  useRef
+} from 'react'
+import { ThemeContext } from 'styled-components'
+import { getMainColor, MainColorNameType } from '../utils'
+import { useRipple } from '../utils/ripple/ripple'
+import { ButtonContainer, ButtonMain } from './ButtonStyles'
+import { ButtonSize, ButtonVariant } from './ButtonTypes'
 
 export interface ButtonProps {
   label?: string | number | Component
-  variant?: 'filled' | 'outline'
-  size?: 'large' | 'small'
+  size?: ButtonSize
+  variant?: ButtonVariant
+  color: MainColorNameType
+  loading?: boolean
+  fullWidth?: boolean
+  grow?: boolean
   onClick?: MouseEventHandler<HTMLButtonElement>
+  disabled: boolean
+  type?: 'button' | 'reset' | 'submit'
 }
 
 const Button: FunctionComponent<ButtonProps> = ({
   label,
   children,
   onClick,
-  size = 'large',
-  variant = 'filled'
+  loading,
+  disabled = false,
+  fullWidth = false,
+  grow = false,
+  size = 'medium',
+  variant = 'filled',
+  color = 'primary',
+  type = 'button'
 }) => {
+  const theme = useContext(ThemeContext)
+  console.log(theme)
+  const selectedColor = getMainColor(color, theme)
+
+  const rippleColors: { [key in ButtonVariant]: string } = {
+    filled: selectedColor.light,
+    outline: selectedColor.main,
+    text: selectedColor.main
+  }
+  const rippleColor = rippleColors[variant]
+
+  const containerRef = useRef<any>()
+  const [ClickEffect, rippleFromEvent] = useRipple(containerRef)
+
   return (
-    <button onClick={onClick}>
-      {label}
-      {children}
-      {variant}
-      {size}
-    </button>
+    <ButtonContainer
+      ref={containerRef}
+      onClick={rippleFromEvent}
+      loading={loading}
+      disabled={disabled || loading}
+      fullWidth={fullWidth}
+      grow={grow}
+    >
+      <ButtonMain
+        size={size}
+        color={color}
+        variant={variant}
+        disabled={disabled || loading}
+        onClick={onClick}
+        type={type}
+      >
+        <ClickEffect color={rippleColor} />
+        {/* {loading && <ButtonLoading />} */}
+        {label}
+        {children}
+      </ButtonMain>
+    </ButtonContainer>
   )
 }
 
