@@ -6,8 +6,8 @@ import React, {
   useRef
 } from 'react'
 import { ThemeContext } from 'styled-components'
-import { getMainColor, MainColorNameType } from '../utils'
-import { useRipple } from '../utils/ripple/ripple'
+import { getMainColor, MainColorNameType } from '../../utils'
+import { useRipple } from '../../utils/ripple/ripple'
 import { ButtonContainer, ButtonMain } from './ButtonStyles'
 import { ButtonSize, ButtonVariant } from './ButtonTypes'
 

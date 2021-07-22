@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { cssGetSize, MainColorNameType } from '../utils'
+import { cssGetSize, MainColorNameType } from '../../utils'
 import { ButtonSize, ButtonVariant } from './ButtonTypes'
 
 interface ButtonContainerInteface {
