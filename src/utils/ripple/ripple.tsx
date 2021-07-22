@@ -22,7 +22,6 @@ export const useRipple = (
   containerRef: React.MutableRefObject<any>
 ): [
   React.FC<ClickEffectProps>,
-  React.RefObject<any>,
   rippleFromEventType,
   rippleFromPositionType
 ] => {
@@ -52,7 +51,10 @@ export const useRipple = (
   /**
    * Component controlled by hook, renders the ripple.
    */
-  const ClickEffect: React.FC<ClickEffectProps> = ({ color = 'white' }) => (
+  const ClickEffect: React.FC<ClickEffectProps> = ({
+    color = 'white',
+    opacity
+  }) => (
     <ClickEffectContainer
       style={{
         top: effectPos ? effectPos.top : 0,
@@ -61,7 +63,8 @@ export const useRipple = (
       key={effectPos ? effectPos.key : 0}
       active={!!effectPos}
       color={color}
+      opacity={opacity}
     />
   )
-  return [ClickEffect, containerRef, rippleFromEvent, rippleFromPosition]
+  return [ClickEffect, rippleFromEvent, rippleFromPosition]
 }

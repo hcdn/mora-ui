@@ -1,9 +1,9 @@
 import styled, { css, keyframes } from 'styled-components'
 import { ClickEffectContainerProps } from './rippleTypes'
 
-const clickEffectAnimation = keyframes`
+const clickEffectAnimation = (opacity: number = 0.3) => keyframes`
 	0% {
-		opacity: 0.2;
+		opacity: ${opacity};
 		width: 50%;
 	}
 	70% {
@@ -17,15 +17,14 @@ const clickEffectAnimation = keyframes`
 `
 
 export const ClickEffectContainer = styled.div<ClickEffectContainerProps>`
-  ${({ active, color }) =>
+  ${({ active, color, opacity }) =>
     active &&
     css`
       position: absolute;
-      filter: blur(0.2rem);
       pointer-events: none;
       animation-fill-mode: forwards;
       opacity: 0;
-      animation: ${clickEffectAnimation} 0.3s ease-out;
+      animation: ${clickEffectAnimation(opacity)} 0.3s ease-out;
       &:before {
         content: '';
         transform: translate(-100%, -50%);
