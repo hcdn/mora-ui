@@ -16,4 +16,8 @@ export interface ThemeType {
   sizing: SizingType
   elevations: ElevationsType
   font: FontType
+  layout: {
+    colCount: number
+    colGap: number
+  }
 }

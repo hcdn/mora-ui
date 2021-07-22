@@ -21,20 +21,15 @@ export const defaultLightTheme: ThemeType = {
   },
   sizing: defaultSizing,
   elevations: defaultElevations,
-  font: defaultFont
+  font: defaultFont,
+  layout: {
+    colCount: 12,
+    colGap: 1
+  }
 }
 
 export const defaultDarkTheme: ThemeType = {
+  ...defaultLightTheme,
   name: 'darkTheme',
-  type: 'dark',
-  palette: defaultLightPalette,
-  screens: {
-    sm: '480px',
-    md: '768px',
-    lg: '976px',
-    xl: '1440px'
-  },
-  sizing: defaultSizing,
-  elevations: defaultElevations,
-  font: defaultFont
+  type: 'dark'
 }
