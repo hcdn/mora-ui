@@ -43,8 +43,11 @@ export const useRipple = (
    */
   const rippleFromPosition = (x: number = 50, y: number = 50) => {
     const positions = getElementPositions(containerRef)
-    const left = ((positions.left + positions.width) / 100) * x
-    const top = ((positions.top + positions.height) / 100) * y
+    /**
+     * TODO: fix esto: https://stackoverflow.com/questions/3234256/find-mouse-position-relative-to-element/42111623#42111623
+     */
+    const left = (positions.width / 100) * x
+    const top = (positions.height / 100) * y
     const key = Math.random().toString()
     setEffectPos({ top, left, key })
   }

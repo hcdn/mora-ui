@@ -13,9 +13,9 @@ import { BoxProps, BoxWrapperProps, ContainerProps } from './BoxTypes'
  * Sizes for containers in rems
  */
 const maxSizes = {
-  l: 100,
-  m: 70,
-  s: 20
+  l: 150,
+  m: 100,
+  s: 70
 }
 
 const getContainerMaxWidth = (size?: ContainerProps['size']): number =>

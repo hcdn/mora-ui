@@ -49,12 +49,13 @@ const Button: FunctionComponent<ButtonProps> = ({
   const rippleColor = rippleColors[variant]
 
   const containerRef = useRef<any>()
-  const [ClickEffect, rippleFromEvent] = useRipple(containerRef)
+  const [ClickEffect, _rippleFromEvent, rippleFromPosition] =
+    useRipple(containerRef)
 
   return (
     <ButtonContainer
       ref={containerRef}
-      onClick={rippleFromEvent}
+      onClick={() => rippleFromPosition(50, 50)}
       loading={loading}
       disabled={disabled || loading}
       fullWidth={fullWidth}

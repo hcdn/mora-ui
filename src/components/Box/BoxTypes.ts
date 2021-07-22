@@ -26,8 +26,8 @@ export interface BoxWrapperProps
 export interface BoxProps
   extends MarignSpacerInterface,
     PaddingSpacerInterface {
-  direction?: string
-  dir?: string
+  direction?: 'row' | 'column'
+  dir?: 'row' | 'column'
   space?: number | string
   children?: any
   noWrap?: boolean

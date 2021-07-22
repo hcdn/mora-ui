@@ -1,4 +1,5 @@
 import React from 'react'
+import { Box } from '../Box/Box'
 import Button from './Button'
 
 export default {
@@ -25,12 +26,12 @@ export default {
 }
 
 const Template = (args: any) => (
-  <>
+  <Box p={3} space={1} direction='column' flex container containerSize={50}>
     <Button {...args} label='Primary' color='primary' />
     <Button {...args} label='Success' color='success' />
     <Button {...args} label='Error' color='error' />
     <Button {...args} label='Warning' color='warning' />
-  </>
+  </Box>
 )
 
 export const Filled = Template.bind({})
