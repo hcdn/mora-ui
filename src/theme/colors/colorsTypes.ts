@@ -1,36 +1,43 @@
 // Main colors are used as "named" primary colors for the interface
-export interface MainColorType {
-  main: string
-  light: string
-  dark: string
-  contrastText: string
+export type MainColorVariantType = 'main' | 'light' | 'dark' | 'contrastText'
+
+export type MainColorType = {
+  [key in MainColorVariantType]: string
 }
+
 export interface MainColorCreatorType {
   main: string
   light?: string
   dark?: string
   contrastText?: string
 }
+
 // Base colors of the App
-export interface StepColorType {
-  0: string
-  1: string
-  2: string
-  3: string
-  4: string
-  5: string
-  6: string
-  7: string
-  8: string
-  9: string
-  10: string
+export type StepColorLevelsType =
+  | 'default'
+  | 0
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+
+export type StepColorType = {
+  [key in StepColorLevelsType]: string
 }
+
 export interface TextColorsType {
   primary: string
   secondary: string
   disabled: string
   link: string
 }
+
 // Colors for actions
 export interface ActionColorType {
   active: string

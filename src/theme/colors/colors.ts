@@ -9,14 +9,14 @@ import chroma, { Color, Scale } from 'chroma-js'
 
 export const createMainColor = (
   color: MainColorCreatorType,
-  lightText: TextColorsType,
-  darkText: TextColorsType
+  lightText?: TextColorsType,
+  darkText?: TextColorsType
 ): MainColorType => {
   const mainColor = chroma(color.main)
   return {
     main: color.main,
-    light: color.light ?? mainColor.brighten().hex(),
-    dark: color.dark ?? mainColor.darken().hex(),
+    light: color.light ?? mainColor.mix('white', 0.9, 'lch').hex(),
+    dark: color.dark ?? mainColor.darken(0.5).hex(),
     contrastText:
       color.contrastText ??
       getContrastText(color.main, lightText, darkText).primary
@@ -27,10 +27,13 @@ export const createMainColor = (
 
 const getContrastText = (
   color: string,
-  lightText: TextColorsType,
-  darkText: TextColorsType
+  lightText?: TextColorsType,
+  darkText?: TextColorsType
 ): TextColorsType => {
-  return chroma(color).luminance() > 0.5 ? lightText : darkText
+  if (!lightText || !darkText) {
+    throw new Error('You need to specify default text colors.')
+  }
+  return chroma(color).luminance() > 0.5 ? darkText : lightText
 }
 
 const generateChromaGradient = (color: string): Scale<Color> => {
@@ -47,6 +50,7 @@ export const createRangeColor = (color: string): StepColorType => {
   const gradient = generateChromaGradient(color)
   const colors = gradient.colors(13)
   return {
+    default: color,
     0: colors[1],
     1: colors[2],
     2: colors[3],

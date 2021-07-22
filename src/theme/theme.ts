@@ -3,6 +3,7 @@ import { defaultLightPalette } from './palette/palette'
 import { defaultSizing } from './sizing/sizing'
 import { ThemeType } from './themeTypes'
 import 'styled-components'
+import { defaultFont } from './font/font'
 
 declare module 'styled-components' {
   export interface DefaultTheme extends ThemeType {}
@@ -19,7 +20,8 @@ export const defaultLightTheme: ThemeType = {
     xl: '1440px'
   },
   sizing: defaultSizing,
-  elevations: defaultElevations
+  elevations: defaultElevations,
+  font: defaultFont
 }
 
 export const defaultDarkTheme: ThemeType = {
@@ -33,5 +35,6 @@ export const defaultDarkTheme: ThemeType = {
     xl: '1440px'
   },
   sizing: defaultSizing,
-  elevations: defaultElevations
+  elevations: defaultElevations,
+  font: defaultFont
 }

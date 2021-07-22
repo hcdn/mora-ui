@@ -1,4 +1,5 @@
 import { ElevationsType } from './elevations/elevationsTypes'
+import { FontType } from './font/fontTypes'
 import { PaletteType } from './palette/paletteTypes'
 import { SizingType } from './sizing/sizingTypes'
 
@@ -14,4 +15,5 @@ export interface ThemeType {
   }
   sizing: SizingType
   elevations: ElevationsType
+  font: FontType
 }
