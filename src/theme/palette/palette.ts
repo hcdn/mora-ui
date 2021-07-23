@@ -62,9 +62,9 @@ export const defaultLightPalette: PaletteType = {
       contrastText: '#000000'
     },
     secondary: {
-      main: '#ffffff',
-      light: '#ffffff',
-      dark: '#ffffff',
+      main: '#F6F7FB',
+      light: '#F6F7FB',
+      dark: '#F6F7FB',
       contrastText: '#000000'
     }
   },
