@@ -1,7 +1,8 @@
 import {
+  CssStylesInterface,
   MarignSpacerInterface,
   PaddingSpacerInterface
-} from '../../utils/spacer'
+} from '../../utils'
 
 export interface ContainerProps {
   size?: 'l' | 'm' | 's' | number
@@ -10,7 +11,8 @@ export interface ContainerProps {
 
 export interface BoxWrapperProps
   extends MarignSpacerInterface,
-    PaddingSpacerInterface {
+    PaddingSpacerInterface,
+    CssStylesInterface {
   space?: number | string
   direction?: 'row' | 'column'
   noWrap?: boolean
@@ -25,7 +27,8 @@ export interface BoxWrapperProps
 }
 export interface BoxProps
   extends MarignSpacerInterface,
-    PaddingSpacerInterface {
+    PaddingSpacerInterface,
+    CssStylesInterface {
   direction?: 'row' | 'column'
   dir?: 'row' | 'column'
   space?: number | string
