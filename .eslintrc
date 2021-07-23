@@ -32,7 +32,7 @@
     "import/export": 0,
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
-    "indent": ["error", 2, { "SwitchCase": 1 }],
+    // "indent": ["error", 2, { "SwitchCase": 1}],
     "quotes": ["error", "single"],
     "no-multi-spaces": ["error"]
   },

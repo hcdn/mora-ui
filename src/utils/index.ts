@@ -1,3 +1,6 @@
 export * from './ripple'
 export * from './sizing/sizing'
 export * from './colors/colors'
+export * from './spacer'
+export * from './createCss'
+export * from './getProp'
