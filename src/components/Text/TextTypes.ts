@@ -33,8 +33,14 @@ export interface TextProps
   extends MarignSpacerInterface,
     PaddingSpacerInterface,
     CssStylesInterface {
+  // Alignment of the text
+  align?: CSSProperties['textAlign']
+  // Used to set the style of the text
   variant?: TypographyVariantsLevels
+  // Change the rendered tag
   component?: keyof JSX.IntrinsicElements
 }
 
-export interface TextStylesProps extends CssStylesInterface {}
+export interface TextStylesProps extends CssStylesInterface {
+  align?: CSSProperties['textAlign']
+}

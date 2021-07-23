@@ -7,6 +7,7 @@ export const Text: FC<TextProps> = ({
   variant,
   component,
   children,
+  align,
   cssStyles,
   ...props
 }) => {
@@ -24,6 +25,7 @@ export const Text: FC<TextProps> = ({
       {...marginProps}
       {...paddingProps}
       as={ElementTag}
+      align={align}
       cssStyles={elementCss}
     >
       {children}

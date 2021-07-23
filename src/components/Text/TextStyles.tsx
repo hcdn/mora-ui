@@ -1,5 +1,10 @@
 import styled from 'styled-components'
-import { cssCreateStyles, spacerMargin, spacerPadding } from '../../utils'
+import {
+  cssCreateStyles,
+  cssGetProp,
+  spacerMargin,
+  spacerPadding
+} from '../../utils'
 import { TextStylesProps, TypographyVariants } from './TextTypes'
 
 /**
@@ -84,7 +89,7 @@ export const textVariants: TypographyVariants = {
     component: 'p',
     css: {
       fontSize: '0.9rem',
-      marginBottom: '0.5rem',
+      marginBottom: '0',
       fontWeight: 500
     }
   },
@@ -102,4 +107,5 @@ export const TextStyles = styled.div<TextStylesProps>`
   ${cssCreateStyles}
   ${spacerMargin}
   ${spacerPadding}
+  ${({ align }) => cssGetProp('text-align', align)}
 `
