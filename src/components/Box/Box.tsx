@@ -42,6 +42,7 @@ export const Box = (props: BoxProps) => {
       container={props.container}
       containerSize={props.containerSize}
       cssStyles={props.cssStyles}
+      background={props.background}
       {...marginProps}
       {...paddingProps}
     >

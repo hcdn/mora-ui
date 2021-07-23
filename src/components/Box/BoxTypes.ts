@@ -3,6 +3,7 @@ import {
   MarignSpacerInterface,
   PaddingSpacerInterface
 } from '../../utils'
+import { UseBackgroundInterface } from '../../utils/colors/getBackground'
 
 export interface ContainerProps {
   size?: 'l' | 'm' | 's' | number
@@ -12,7 +13,8 @@ export interface ContainerProps {
 export interface BoxWrapperProps
   extends MarignSpacerInterface,
     PaddingSpacerInterface,
-    CssStylesInterface {
+    CssStylesInterface,
+    UseBackgroundInterface {
   space?: number | string
   direction?: 'row' | 'column'
   noWrap?: boolean
@@ -28,7 +30,8 @@ export interface BoxWrapperProps
 export interface BoxProps
   extends MarignSpacerInterface,
     PaddingSpacerInterface,
-    CssStylesInterface {
+    CssStylesInterface,
+    UseBackgroundInterface {
   direction?: 'row' | 'column'
   dir?: 'row' | 'column'
   space?: number | string

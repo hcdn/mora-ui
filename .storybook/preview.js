@@ -1,4 +1,4 @@
-import { addDecorator } from '@storybook/react';
+import React from 'react'
 import { withThemes } from '@react-theming/storybook-addon';
 import { defaultLightTheme, defaultDarkTheme } from '../src/theme/theme'
 import { ThemeProvider } from 'styled-components';
@@ -13,4 +13,14 @@ export const parameters = {
   },
 }
 
-addDecorator(withThemes(ThemeProvider, [defaultLightTheme, defaultDarkTheme]))
+const withThemesDecorator = withThemes(ThemeProvider, [defaultLightTheme, defaultDarkTheme])
+
+// const withThemeProvider = (Story, context) => {
+//   return (
+//       <ThemeProvider theme={defaultLightTheme}>
+//         <Story {...context} />
+//       </ThemeProvider>
+//   )
+// }
+
+export const decorators = [withThemesDecorator]

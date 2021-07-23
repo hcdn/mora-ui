@@ -1,5 +1,6 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import { cssCreateStyles, cssGetSize } from '../../utils'
+import { cssCreateStyles, cssGetSize, getSize } from '../../utils'
+import { cssUseBackground } from '../../utils/colors/getBackground'
 import { spacerMargin, spacerPadding } from '../../utils/spacer'
 import { BoxWrapperProps, ContainerProps } from './BoxTypes'
 /**
@@ -26,14 +27,14 @@ export const buildContainer = ({ size, padding }: ContainerProps) => css`
   box-sizing: border-box;
 `
 
-const buildInnerSpace = (space: any, direction: string) => {
+const buildInnerSpace = (space: string, direction: string) => {
   switch (direction) {
     case 'row':
-      return `margin-right: ${space}rem;`
+      return `margin-right: ${space};`
     case 'column':
-      return `margin-bottom: ${space}rem;`
+      return `margin-bottom: ${space};`
     default:
-      return `margin-right: ${space}rem;`
+      return `margin-right: ${space};`
   }
 }
 
@@ -57,13 +58,13 @@ export const BoxWrapper = styled.div<BoxWrapperProps>`
 	${({ flex }) => flex && flexBox}
 	${({ align }) => addProp('align-items', align)}
 	${({ justify }) => addProp('justify-content', justify)}
-	${({ space, direction = 'row' }) =>
+	${({ space, direction = 'row', theme }) =>
     space &&
     `
-		& > *:not(:last-child) {
-			${buildInnerSpace(space, direction)}
-		}
-	`}
+      & > *:not(:last-child) {
+        ${buildInnerSpace(getSize(space, theme), direction)}
+      }
+    `}
 	${({ colCount, theme }) =>
     colCount &&
     `
@@ -79,5 +80,6 @@ export const BoxWrapper = styled.div<BoxWrapperProps>`
     `
 			flex-grow: ${grow ? 1 : 0};
 		`}
+  ${cssUseBackground}
   ${cssCreateStyles}
 `
