@@ -38,7 +38,6 @@ const Button: FunctionComponent<ButtonProps> = ({
   type = 'button'
 }) => {
   const theme = useContext(ThemeContext)
-  console.log(theme)
   const selectedColor = getMainColor(color, theme)
 
   const rippleColors: { [key in ButtonVariant]: string } = {
