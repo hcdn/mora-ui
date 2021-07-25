@@ -1,6 +1,6 @@
 # mora-ui
 
-> Made with create-react-library
+> mora-ui es una librería de React para desarrollar sistemas de la Honorable Cámara de Diputados de la Nación.
 
 [![NPM](https://img.shields.io/npm/v/mora-ui.svg)](https://www.npmjs.com/package/mora-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -15,16 +15,17 @@ npm install --save mora-ui
 ```tsx
 import React, { Component } from 'react'
 
-import MyComponent from 'mora-ui'
-import 'mora-ui/dist/index.css'
+import {Box, Text} from 'mora-ui'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <Box>
+      <Text variant='h6'>MORA UI</Text>
+    </Box>
   }
 }
 ```
 
 ## License
 
-MIT © [Honorable Cámara de Diputados de la Nación](https://github.com/Honorable Cámara de Diputados de la Nación)
+MIT © [Honorable Cámara de Diputados de la Nación](https://github.com/hcdn)
