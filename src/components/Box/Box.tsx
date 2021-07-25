@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useSpacerMargin, useSpacerPadding } from '../../utils/spacer'
 import { BoxWrapper } from './BoxStyles'
 import { BoxProps } from './BoxTypes'
@@ -17,7 +17,7 @@ const mapChilds = (child: React.ReactNode, align: string | undefined) => {
   }
 }
 
-export const Box = (props: BoxProps) => {
+export const Box: FC<BoxProps> = (props) => {
   const colCount: number | boolean =
     (props.cols === true && props.span ? props.span : props.cols) || false
   const Children = React.Children.map(

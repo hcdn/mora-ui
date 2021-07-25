@@ -2,17 +2,23 @@ import styled, { css, DefaultTheme } from 'styled-components'
 import { cssCreateStyles, cssGetSize, getSize } from '../../utils'
 import { cssUseBackground } from '../../utils/colors/getBackground'
 import { spacerMargin, spacerPadding } from '../../utils/spacer'
-import { BoxWrapperProps, ContainerProps } from './BoxTypes'
+import {
+  BoxWrapperProps,
+  containerMaxSizesInterface,
+  ContainerProps
+} from './BoxTypes'
 /**
  * Sizes for containers in rems
  */
-const maxSizes = {
-  l: 150,
-  m: 100,
-  s: 70
+const maxSizes: containerMaxSizesInterface = {
+  max: '100%',
+  xl: 250,
+  l: 200,
+  m: 150,
+  s: 100
 }
 
-const getContainerMaxWidth = (size?: ContainerProps['size']): number =>
+const getContainerMaxWidth = (size?: ContainerProps['size']): number | string =>
   typeof size === 'number' ? size : maxSizes[size ?? 'l']
 
 export const buildContainer = ({ size, padding }: ContainerProps) => css`

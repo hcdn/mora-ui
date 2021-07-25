@@ -5,8 +5,14 @@ import {
 } from '../../utils'
 import { UseBackgroundInterface } from '../../utils/colors/getBackground'
 
+export type ContainerSizeType = 'max' | 'xl' | 'l' | 'm' | 's'
+
+export type containerMaxSizesInterface = {
+  [key in ContainerSizeType]: number | string
+}
+
 export interface ContainerProps {
-  size?: 'l' | 'm' | 's' | number
+  size?: ContainerSizeType | number
   padding?: boolean
 }
 
@@ -25,26 +31,37 @@ export interface BoxWrapperProps
   span?: number
   flex?: boolean
   container?: boolean
-  containerSize?: 'l' | 'm' | 's' | number
+  containerSize?: ContainerSizeType | number
 }
 export interface BoxProps
   extends MarignSpacerInterface,
     PaddingSpacerInterface,
     CssStylesInterface,
     UseBackgroundInterface {
+  // Flex direction
   direction?: 'row' | 'column'
+  // Flex direction
   dir?: 'row' | 'column'
+  // Space between child elements
   space?: number | string
-  children?: any
+  // Controls whether the flex container is single-line or multi-line, and the direction of the cross-axis, which determines the direction new lines are stacked in.
   noWrap?: boolean
+  // Flex grow
   grow?: boolean
+  // Align items
   align?: string
+  // Justify content
   justify?: string
+  // Columns
   cols?: boolean | number
+  // Size of n columns
   span?: number
+  // Make the component flex
+  flex?: boolean
+  // Make the component a container
+  container?: boolean
+  // The size of the container
+  containerSize?: ContainerSizeType | number
   className?: any
   as?: any
-  flex?: boolean
-  container?: boolean
-  containerSize?: 'l' | 'm' | 's' | number
 }
