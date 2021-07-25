@@ -25,8 +25,20 @@ export default {
   }
 }
 
+export const Index = (args: any) => (
+  <Box flex container justify='center'>
+    <Button {...args} />
+  </Box>
+)
+
+Index.args = {
+  variant: 'filled',
+  label: 'click me!',
+  size: 'medium'
+}
+
 const Template = (args: any) => (
-  <Box p={3} space={1} direction='column' flex container containerSize={50}>
+  <Box p={4} space={3} direction='column' flex container containerSize={50}>
     <Button {...args} label='Primary' color='primary' />
     <Button {...args} label='Success' color='success' />
     <Button {...args} label='Error' color='error' />

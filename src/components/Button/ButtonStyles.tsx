@@ -22,18 +22,42 @@ export const ButtonContainer = styled.div<ButtonContainerInteface>`
  * MAIN BUTTON CSS
  */
 
-const ButtonBaseCss = css`
+export interface ButtonMainInterface {
+  disabled?: boolean
+  color: MainColorNameType
+  variant: ButtonVariant
+  size: ButtonSize
+}
+
+const cssGetButtonPadding = css<ButtonMainInterface>`
+  ${({ size }) => {
+    switch (size) {
+      case 'medium':
+        return css`
+          padding: ${cssGetSize(3)} ${cssGetSize(4)};
+          border-radius: ${cssGetSize(3)};
+        `
+      case 'small':
+        return css`
+          padding: ${cssGetSize(1.5)} ${cssGetSize(2)};
+          border-radius: ${cssGetSize(1.5)};
+        `
+    }
+  }}
+`
+
+const ButtonBaseCss = css<ButtonMainInterface>`
   overflow: hidden;
   letter-spacing: 0.04rem;
   text-align: center;
   cursor: pointer;
+  ${cssGetButtonPadding}
   ${({ theme }) => css`
     transition: background-color 0.2s ease, ${theme.elevations.transition};
     font-family: ${theme.font.family.sans};
     font-weight: ${theme.font.weight.bold};
-    border-radius: ${cssGetSize(2)};
-    padding: ${cssGetSize(2)} ${cssGetSize(3)};
-    font-size: ${cssGetSize(2)};
+
+    font-size: 0.9rem;
   `}
   border: none;
   position: relative;
@@ -42,13 +66,6 @@ const ButtonBaseCss = css`
     outline: none;
   }
 `
-
-export interface ButtonMainInterface {
-  disabled?: boolean
-  color: MainColorNameType
-  variant: ButtonVariant
-  size: ButtonSize
-}
 
 export const ButtonMain = styled.button<ButtonMainInterface>`
   width: 100%;
@@ -83,6 +100,10 @@ const ButtonFilledCss = css<ButtonMainInterface>`
         background-color: ${buttonColor.dark};
 				box-shadow: ${theme.elevations.z[1]};
 			}
+      &:focus-visible {
+        background-color: ${buttonColor.dark};
+				box-shadow: ${theme.elevations.z[2]};
+			}
 		`
   }}
 `
@@ -95,7 +116,7 @@ const ButtonOutlineCss = css<ButtonMainInterface>`
 			color: ${buttonColor.main};
 			background-color: transparent;
 			box-shadow: 0 0 0 1px ${buttonColor.main} inset;
-      &:hover {
+      &:hover, &:focus-visible {
         background-color: ${buttonColor.light};
 			}
 		`
@@ -111,7 +132,7 @@ const ButtonTextCss = css<ButtonMainInterface>`
     return `
 			color: ${buttonColor.main};
 			background-color: transparent;
-      &:hover {
+      &:hover, &:focus-visible {
         background-color: ${buttonColor.light};
 			}
 		`
