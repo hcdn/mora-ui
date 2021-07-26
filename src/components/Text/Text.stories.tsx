@@ -39,3 +39,9 @@ export const Index = () => (
     </Text>
   </Box>
 )
+
+export const CustomComponent = () => (
+  <Text variant='h1' component='h2'>
+    h1 style with h2 tag.
+  </Text>
+)

@@ -1,5 +1,12 @@
 import { SizingType } from './sizingTypes'
 
+/**
+ * Generate size:
+ *
+ * if typeof size === 'string' => it will return "size"
+ *
+ * if typeof size === 'number' => it will return size * scale unit
+ */
 export const getSize = (
   size: number | string,
   scale: number = 0.25,
