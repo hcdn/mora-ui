@@ -8,6 +8,7 @@ import React, {
 import { ThemeContext } from 'styled-components'
 import { getMainColor, MainColorNameType } from '../../utils'
 import { useRipple } from '../../utils/ripple/ripple'
+import { Text } from '../Text/Text'
 import { ButtonContainer, ButtonMain } from './ButtonStyles'
 import { ButtonSize, ButtonVariant } from './ButtonTypes'
 
@@ -24,6 +25,7 @@ export interface ButtonProps {
   type?: 'button' | 'reset' | 'submit'
 }
 
+// TODO: refactor este para que herede del Box
 const Button: FunctionComponent<ButtonProps> = ({
   label,
   children,
@@ -48,13 +50,13 @@ const Button: FunctionComponent<ButtonProps> = ({
   const rippleColor = rippleColors[variant]
 
   const containerRef = useRef<any>()
-  const [ClickEffect, _rippleFromEvent, rippleFromPosition] =
+  const [ClickEffect, rippleFromEvent, _rippleFromPosition] =
     useRipple(containerRef)
 
   return (
     <ButtonContainer
       ref={containerRef}
-      onClick={() => rippleFromPosition(50, 50)}
+      onClick={rippleFromEvent}
       loading={loading}
       disabled={disabled || loading}
       fullWidth={fullWidth}
@@ -70,8 +72,10 @@ const Button: FunctionComponent<ButtonProps> = ({
       >
         <ClickEffect color={rippleColor} />
         {/* {loading && <ButtonLoading />} */}
-        {label}
-        {children}
+        <Text variant='button'>
+          {label}
+          {children}
+        </Text>
       </ButtonMain>
     </ButtonContainer>
   )

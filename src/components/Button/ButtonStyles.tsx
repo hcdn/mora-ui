@@ -48,7 +48,6 @@ const cssGetButtonPadding = css<ButtonMainInterface>`
 
 const ButtonBaseCss = css<ButtonMainInterface>`
   overflow: hidden;
-  letter-spacing: 0.04rem;
   text-align: center;
   cursor: pointer;
   ${cssGetButtonPadding}
@@ -56,8 +55,6 @@ const ButtonBaseCss = css<ButtonMainInterface>`
     transition: background-color 0.2s ease, ${theme.elevations.transition};
     font-family: ${theme.font.family.sans};
     font-weight: ${theme.font.weight.bold};
-
-    font-size: 0.9rem;
   `}
   border: none;
   position: relative;
