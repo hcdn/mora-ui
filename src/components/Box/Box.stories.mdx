@@ -1,0 +1,43 @@
+import { Meta, Story, Canvas, ArgsTable, Description, Source  } from '@storybook/addon-docs';
+import { Box } from './Box'
+import {FlexBox, GridBox} from './Box.stories.tsx';
+import dedent from 'ts-dedent';
+
+<Meta title="Components/Box" component={Box} />
+
+# Box
+
+The box component allows you to create layouts for any component.
+
+## Flex box
+
+Create a flex layout using props.
+<Canvas>
+  <Story story={FlexBox} />
+</Canvas>
+
+## Gird box
+
+Create a grid layout using the **cols** and **span** props.
+
+<Source
+  language='tsx'
+  code={dedent`
+<Box cols> {/* automatically divided in 12 columns */}
+  <Box span={3}></Box>
+  <Box span={9} cols> {/* automatically divided in 9 columns */}
+    <Box span={6}></Box>
+    <Box span={3}></Box>
+  </Box>
+</Box>
+  `}
+/>
+
+### Example
+
+<Canvas>
+  <Story story={GridBox} />
+</Canvas>
+
+## Box props
+<ArgsTable of={Box} />
