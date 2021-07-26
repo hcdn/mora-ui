@@ -15,12 +15,12 @@ export interface ButtonProps {
   label?: string | number | Component
   size?: ButtonSize
   variant?: ButtonVariant
-  color: MainColorNameType
+  color?: MainColorNameType
   loading?: boolean
   fullWidth?: boolean
   grow?: boolean
   onClick?: MouseEventHandler<HTMLButtonElement>
-  disabled: boolean
+  disabled?: boolean
   type?: 'button' | 'reset' | 'submit'
 }
 
