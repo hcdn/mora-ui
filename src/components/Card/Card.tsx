@@ -2,25 +2,16 @@ import styled, { css, DefaultTheme } from 'styled-components'
 import { getSize } from '../../utils'
 import { cssGetProp } from '../../utils/getProp'
 import { Box } from '../Box/Box'
-import { BoxProps } from '../Box/BoxTypes'
+import { CardProps, CardVariantType } from './CardTypes'
 
-export interface CardProps extends BoxProps {
-  variant?: 'outline' | 'filled' | 'secondary'
-  outline?: boolean | string
-  elevation?: keyof DefaultTheme['elevations']['z']
-  elevationHover?: keyof DefaultTheme['elevations']['z']
-  background?: string
-  borderRadius?: number | string
-}
-
-const getOutline = (outline: boolean | string, theme: DefaultTheme) =>
+const getOutlineColor = (outline: boolean | string, theme: DefaultTheme) =>
   typeof outline === 'string' ? outline : theme.palette.divider
 
+type CardVariantsConfig = { [k in CardVariantType]: CardProps }
+
 export const Card = styled(Box).attrs<CardProps>((props) => {
-  /**
-   * Set default props from variant
-   */
-  const variantProps = {
+  // Set default props from variant.
+  const variantProps: CardVariantsConfig = {
     outline: {
       outline: true,
       background: props.theme.palette.background.primary.main
@@ -30,9 +21,11 @@ export const Card = styled(Box).attrs<CardProps>((props) => {
     },
     secondary: {
       background: props.theme.palette.background.secondary.main
-    }
+    },
+    none: {}
   }
   const selectedVariant = variantProps[props.variant || 'outline']
+  // Merge default variant props with user props.
   return { ...selectedVariant, ...props }
 })<CardProps>`
   ${({
@@ -48,7 +41,7 @@ export const Card = styled(Box).attrs<CardProps>((props) => {
     ${cssGetProp('box-shadow', elevation && theme.elevations.z[elevation])}
     ${cssGetProp(
       'border',
-      outline && `solid 1px ${getOutline(outline, theme)}`
+      outline && `solid 1px ${getOutlineColor(outline, theme)}`
     )}
     transition: box-shadow 0.2s ease;
     &:hover {
@@ -61,7 +54,7 @@ export const Card = styled(Box).attrs<CardProps>((props) => {
 `
 
 Card.defaultProps = {
-  p: 4,
+  p: 6,
   borderRadius: 4,
   variant: 'outline'
 }
