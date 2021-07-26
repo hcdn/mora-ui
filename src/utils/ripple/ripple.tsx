@@ -6,15 +6,6 @@ import {
   rippleFromPositionType
 } from './rippleTypes'
 
-const getElementPositions = (elmentRef: React.MutableRefObject<any>) => {
-  return {
-    left: elmentRef.current?.offsetLeft || 0,
-    top: elmentRef.current?.offsetTop || 0,
-    width: elmentRef.current?.offsetLeft || 0,
-    height: elmentRef.current?.offsetHeight || 0
-  }
-}
-
 /**
  * Ripple effect hook for components.
  */
@@ -26,28 +17,27 @@ export const useRipple = (
   rippleFromPositionType
 ] => {
   const [effectPos, setEffectPos] = useState<
-    { top: number; left: number; key: string } | false
+    { top: number | string; left: number | string; key: string } | false
   >(false)
   /**
    * Create a ripple from a click event.
    */
-  const rippleFromEvent = (e: any) => {
-    const positions = getElementPositions(containerRef)
-    const left = e.pageX - positions.left
-    const top = e.pageY - positions.top
+  const rippleFromEvent: rippleFromEventType = (e: any) => {
+    const positions = containerRef.current.getBoundingClientRect()
+    const left = e.clientX - positions.left
+    const top = e.clientY - positions.top
     const key = Math.random().toString()
     setEffectPos({ top, left, key })
   }
   /**
    * Create a ripple from a x=0-100% y=0-100% position.
    */
-  const rippleFromPosition = (x: number = 50, y: number = 50) => {
-    const positions = getElementPositions(containerRef)
-    /**
-     * TODO: fix esto: https://stackoverflow.com/questions/3234256/find-mouse-position-relative-to-element/42111623#42111623
-     */
-    const left = (positions.width / 100) * x
-    const top = (positions.height / 100) * y
+  const rippleFromPosition: rippleFromPositionType = (
+    x: number = 50,
+    y: number = 50
+  ) => {
+    const left = `${x}%`
+    const top = `${y}%`
     const key = Math.random().toString()
     setEffectPos({ top, left, key })
   }

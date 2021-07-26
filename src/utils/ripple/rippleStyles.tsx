@@ -24,6 +24,7 @@ export const ClickEffectContainer = styled.div<ClickEffectContainerProps>`
       pointer-events: none;
       animation-fill-mode: forwards;
       opacity: 0;
+      /* width: 50%; */
       animation: ${clickEffectAnimation(opacity)} 0.3s ease-out;
       &:before {
         content: '';
