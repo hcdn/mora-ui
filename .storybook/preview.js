@@ -24,3 +24,20 @@ const withThemesDecorator = withThemes(ThemeProvider, [defaultLightTheme, defaul
 // }
 
 export const decorators = [withThemesDecorator]
+
+
+// TODO: agregar temas aca y traducir documentacion
+export const globalTypes = {
+  locale: {
+    name: 'Locale',
+    description: 'Internationalization locale',
+    defaultValue: 'en',
+    toolbar: {
+      icon: 'globe',
+      items: [
+        { value: 'en', right: '🇺🇸', title: 'English' },
+        { value: 'es', right: '🇪🇸', title: 'Español' },
+      ],
+    },
+  },
+};
