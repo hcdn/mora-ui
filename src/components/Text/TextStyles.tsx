@@ -1,11 +1,4 @@
-import styled from 'styled-components'
-import {
-  cssCreateStyles,
-  cssGetProp,
-  spacerMargin,
-  spacerPadding
-} from '../../utils'
-import { TextStylesProps, TypographyVariants } from './TextTypes'
+import { TypographyVariants } from './TextTypes'
 
 /**
  * TODO: pasar esto al theme
@@ -100,12 +93,13 @@ export const textVariants: TypographyVariants = {
       marginBottom: '0.5rem',
       fontWeight: 400
     }
+  },
+  button: {
+    component: 'span',
+    css: {
+      fontSize: '0.9rem',
+      letterSpacing: '0.04rem',
+      fontWeight: 700
+    }
   }
 }
-
-export const TextStyles = styled.div<TextStylesProps>`
-  ${cssCreateStyles}
-  ${spacerMargin}
-  ${spacerPadding}
-  ${({ align }) => cssGetProp('text-align', align)}
-`

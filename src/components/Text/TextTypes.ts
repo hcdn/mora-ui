@@ -17,6 +17,7 @@ export type TypographyVariantsLevels =
   | 'body1'
   | 'body2'
   | 'label'
+  | 'button'
 
 export type TypographyLevelsInterface = {
   [level in TypographyVariantsLevels]: {

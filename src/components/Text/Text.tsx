@@ -1,38 +1,35 @@
-import React, { FC } from 'react'
-import { useSpacerMargin, useSpacerPadding } from '../../utils'
-import { TextStyles, textVariants } from './TextStyles'
+import styled from 'styled-components'
+import {
+  cssCreateStyles,
+  cssGetProp,
+  spacerMargin,
+  spacerPadding
+} from '../../utils'
+import { Box } from '../Box/Box'
+import { textVariants } from './TextStyles'
 import { TextProps } from './TextTypes'
 
-export const Text: FC<TextProps> = ({
-  variant,
-  component,
-  children,
-  align,
-  cssStyles,
-  ...props
-}) => {
-  const selectedVariant = textVariants[variant || 'body2']
-  const ElementTag = component || selectedVariant.component
-  const elementCss = {
-    ...textVariants.commons,
-    ...selectedVariant.css,
-    ...cssStyles
+export const Text = styled(Box).attrs(
+  ({ variant, component, cssStyles, ...props }: TextProps) => {
+    const selectedVariant = textVariants[variant || 'body2']
+    const ElementTag = component || selectedVariant.component
+    const elementCss = {
+      ...textVariants.commons,
+      ...selectedVariant.css,
+      ...cssStyles
+    }
+    return {
+      ...props,
+      cssStyles: elementCss,
+      as: ElementTag
+    }
   }
-  const marginProps = useSpacerMargin(props)
-  const paddingProps = useSpacerPadding(props)
-  return (
-    <TextStyles
-      {...marginProps}
-      {...paddingProps}
-      as={ElementTag}
-      align={align}
-      cssStyles={elementCss}
-    >
-      {children}
-    </TextStyles>
-  )
-}
-
+)<TextProps>`
+  ${cssCreateStyles}
+  ${spacerMargin}
+  ${spacerPadding}
+  ${({ align }) => cssGetProp('text-align', align)}
+`
 Text.defaultProps = {
   variant: 'body2',
   cssStyles: {},
