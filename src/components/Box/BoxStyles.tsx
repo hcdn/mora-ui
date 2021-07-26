@@ -1,12 +1,11 @@
-import styled, { css, DefaultTheme } from 'styled-components'
-import { cssCreateStyles, cssGetSize, getSize } from '../../utils'
-import { cssUseBackground } from '../../utils/colors/getBackground'
-import { spacerMargin, spacerPadding } from '../../utils/spacer'
+import { css, DefaultTheme } from 'styled-components'
+import { cssGetSize } from '../../utils'
 import {
   BoxWrapperProps,
   containerMaxSizesInterface,
   ContainerProps
 } from './BoxTypes'
+
 /**
  * Sizes for containers in rems
  */
@@ -33,7 +32,7 @@ export const buildContainer = ({ size, padding }: ContainerProps) => css`
   box-sizing: border-box;
 `
 
-const buildInnerSpace = (space: string, direction: string) => {
+export const buildInnerSpace = (space: string, direction: string) => {
   switch (direction) {
     case 'row':
       return `margin-right: ${space};`
@@ -44,48 +43,10 @@ const buildInnerSpace = (space: string, direction: string) => {
   }
 }
 
-const addProp = (propName: string, value: any) =>
-  value &&
-  `
-	${propName}: ${value};
-`
-
-const flexBox = css<BoxWrapperProps>`
+export const flexBox = css<BoxWrapperProps>`
   display: flex;
   flex-wrap: ${({ noWrap }) => (noWrap ? 'nowrap' : 'wrap')};
   flex-direction: ${(props) => props.direction || 'row'};
 `
-const getColCount = (colCount: number | boolean, theme: DefaultTheme) =>
+export const getColCount = (colCount: number | boolean, theme: DefaultTheme) =>
   (colCount !== true && colCount) || theme.layout.colCount
-
-export const BoxWrapper = styled.div<BoxWrapperProps>`
-  ${spacerMargin}
-  ${spacerPadding}
-	${({ flex }) => flex && flexBox}
-	${({ align }) => addProp('align-items', align)}
-	${({ justify }) => addProp('justify-content', justify)}
-	${({ space, direction = 'row', theme }) =>
-    space &&
-    `
-      & > *:not(:last-child) {
-        ${buildInnerSpace(getSize(space, theme), direction)}
-      }
-    `}
-	${({ colCount, theme }) =>
-    colCount &&
-    `
-		display: grid;
-		grid-template-columns: repeat(${getColCount(colCount, theme)}, 1fr);
-		grid-gap: ${theme.layout.colGap + 'rem'};
-	`}
-	${({ span }) => !!span && `grid-column:span ${span};`}
-	${({ container, containerSize }) =>
-    container && buildContainer({ size: containerSize || 'l', padding: true })}
-	${({ grow }) =>
-    grow !== undefined &&
-    `
-			flex-grow: ${grow ? 1 : 0};
-		`}
-  ${cssUseBackground}
-  ${cssCreateStyles}
-`

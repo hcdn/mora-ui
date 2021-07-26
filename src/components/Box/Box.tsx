@@ -1,52 +1,51 @@
-import React, { FC } from 'react'
-import { useSpacerMargin, useSpacerPadding } from '../../utils/spacer'
-import { BoxWrapper } from './BoxStyles'
-import { BoxProps } from './BoxTypes'
+import styled from 'styled-components'
+import { cssCreateStyles, cssGetProp, getSize } from '../../utils'
+import { cssUseBackground } from '../../utils/colors/getBackground'
+import { spacerMargin, spacerPadding } from '../../utils/spacer'
+import {
+  buildContainer,
+  buildInnerSpace,
+  flexBox,
+  getColCount
+} from './BoxStyles'
+import { BoxProps, BoxWrapperProps } from './BoxTypes'
 
-const mapChilds = (child: React.ReactNode, align: string | undefined) => {
-  if (!React.isValidElement(child)) {
-    return child
-  }
-  const elementChild: React.ReactElement = child
-  if (elementChild.type === Box) {
-    return React.cloneElement(elementChild, {
-      align: elementChild.props.align || align
-    })
-  } else {
-    return elementChild
-  }
-}
-
-export const Box: FC<BoxProps> = (props) => {
+export const Box = styled.div.attrs<BoxProps, BoxWrapperProps>((props) => {
   const colCount: number | boolean =
     (props.cols === true && props.span ? props.span : props.cols) || false
-  const Children = React.Children.map(
-    props.children,
-    (child: React.ReactNode) => mapChilds(child, props.align)
-  )
-  const marginProps = useSpacerMargin(props)
-  const paddingProps = useSpacerPadding(props)
-  return (
-    <BoxWrapper
-      as={props.as}
-      direction={props.direction || props.dir}
-      space={props.space}
-      noWrap={props.noWrap}
-      grow={props.grow}
-      align={props.align}
-      justify={props.justify}
-      colCount={colCount}
-      span={props.span}
-      className={props.className}
-      flex={props.flex}
-      container={props.container}
-      containerSize={props.containerSize}
-      cssStyles={props.cssStyles}
-      background={props.background}
-      {...marginProps}
-      {...paddingProps}
-    >
-      {Children}
-    </BoxWrapper>
-  )
-}
+  const componentProps = {
+    ...props,
+    colCount
+  }
+  return componentProps
+})<BoxWrapperProps>`
+  ${spacerMargin}
+  ${spacerPadding}
+${({ flex }) => flex && flexBox}
+${({ align }) => cssGetProp('align-items', align)}
+${({ justify }) => cssGetProp('justify-content', justify)}
+${({ space, direction = 'row', theme }) =>
+    space &&
+    `
+    & > *:not(:last-child) {
+      ${buildInnerSpace(getSize(space, theme), direction)}
+    }
+  `}
+${({ colCount, theme }) =>
+    colCount &&
+    `
+  display: grid;
+  grid-template-columns: repeat(${getColCount(colCount, theme)}, 1fr);
+  grid-gap: ${theme.layout.colGap + 'rem'};
+`}
+${({ span }) => !!span && `grid-column:span ${span};`}
+${({ container, containerSize }) =>
+    container && buildContainer({ size: containerSize || 'l', padding: true })}
+${({ grow }) =>
+    grow !== undefined &&
+    `
+    flex-grow: ${grow ? 1 : 0};
+  `}
+${cssUseBackground}
+${cssCreateStyles}
+`
