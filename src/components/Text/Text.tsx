@@ -1,14 +1,10 @@
 import styled from 'styled-components'
-import {
-  cssCreateStyles,
-  cssGetProp,
-  spacerMargin,
-  spacerPadding
-} from '../../utils'
+import { cssGetProp } from '../../utils'
 import { Box } from '../Box/Box'
 import { textVariants } from './TextStyles'
 import { TextProps } from './TextTypes'
 
+// TODO: cambiar prop "component" a "as"
 export const Text = styled(Box).attrs(
   ({ variant, component, cssStyles, ...props }: TextProps) => {
     const selectedVariant = textVariants[variant || 'body2']
@@ -18,16 +14,18 @@ export const Text = styled(Box).attrs(
       ...selectedVariant.css,
       ...cssStyles
     }
-    return {
+
+    const elementProps = {
+      ...selectedVariant.props,
       ...props,
       cssStyles: elementCss,
       as: ElementTag
     }
+    // console.log(elementProps)
+
+    return elementProps
   }
 )<TextProps>`
-  ${cssCreateStyles}
-  ${spacerMargin}
-  ${spacerPadding}
   ${({ align }) => cssGetProp('text-align', align)}
 `
 Text.defaultProps = {

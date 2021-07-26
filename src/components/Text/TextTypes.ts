@@ -1,9 +1,6 @@
 import { CSSProperties } from 'react'
-import {
-  CssStylesInterface,
-  MarignSpacerInterface,
-  PaddingSpacerInterface
-} from '../../utils'
+import { CssStylesInterface } from '../../utils'
+import { BoxProps } from '../Box/BoxTypes'
 
 export type TypographyVariantsLevels =
   | 'h1'
@@ -23,6 +20,7 @@ export type TypographyLevelsInterface = {
   [level in TypographyVariantsLevels]: {
     component: keyof JSX.IntrinsicElements
     css: CSSProperties
+    props?: Partial<TextProps>
   }
 }
 
@@ -30,10 +28,7 @@ export interface TypographyVariants extends TypographyLevelsInterface {
   commons: CSSProperties
 }
 
-export interface TextProps
-  extends MarignSpacerInterface,
-    PaddingSpacerInterface,
-    CssStylesInterface {
+export interface TextProps extends BoxProps {
   // Alignment of the text
   align?: CSSProperties['textAlign']
   // Used to set the style of the text
