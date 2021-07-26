@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'styled-components'
 
-export type SpaceUnit = number | 'auto'
+export type SpaceUnit = number | string | 'auto'
 
 export interface MarignSpacerInterface {
   ml?: SpaceUnit
