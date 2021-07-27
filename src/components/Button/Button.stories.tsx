@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '../Box/Box'
-import Button from './Button'
+import { Button } from './Button'
 
 export default {
   title: 'Components/Button',

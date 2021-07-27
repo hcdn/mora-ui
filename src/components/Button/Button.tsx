@@ -26,7 +26,7 @@ export interface ButtonProps {
 }
 
 // TODO: refactor este para que herede del Box
-const Button: FunctionComponent<ButtonProps> = ({
+export const Button: FunctionComponent<ButtonProps> = ({
   label,
   children,
   onClick,
@@ -50,7 +50,7 @@ const Button: FunctionComponent<ButtonProps> = ({
   const rippleColor = rippleColors[variant]
 
   const containerRef = useRef<any>()
-  const [ClickEffect, rippleFromEvent, _rippleFromPosition] =
+  const [ClickEffect, rippleFromEvent /* _rippleFromPosition */] =
     useRipple(containerRef)
 
   return (
@@ -80,5 +80,3 @@ const Button: FunctionComponent<ButtonProps> = ({
     </ButtonContainer>
   )
 }
-
-export default Button
