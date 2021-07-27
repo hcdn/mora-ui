@@ -43,24 +43,23 @@ const generateChromaGradient = (color: string): Scale<Color> => {
 
   return chroma
     .scale(['white', color, 'black'])
-    .domain([1, roundedColorLuminance, 10])
+    .domain([0, roundedColorLuminance, 10])
 }
 
 export const createRangeColor = (color: string): StepColorType => {
   const gradient = generateChromaGradient(color)
-  const colors = gradient.colors(13)
+  // const colors = gradient
   return {
     default: color,
-    0: colors[1],
-    1: colors[2],
-    2: colors[3],
-    3: colors[4],
-    4: colors[5],
-    5: colors[6],
-    6: colors[7],
-    7: colors[8],
-    8: colors[9],
-    9: colors[10],
-    10: colors[11]
+    0.5: gradient(0.5).hex(),
+    1: gradient(1).hex(),
+    2: gradient(2).hex(),
+    3: gradient(3).hex(),
+    4: gradient(4).hex(),
+    5: gradient(5).hex(),
+    6: gradient(6).hex(),
+    7: gradient(7).hex(),
+    8: gradient(8).hex(),
+    9: gradient(9).hex()
   }
 }

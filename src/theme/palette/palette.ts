@@ -49,25 +49,23 @@ const defaultMainColors = {
   info: createMainColor({ main: '#0288d1' }, defaultLightText, defaultDarkText)
 }
 
+const defaultLightThemeBackground = {
+  primary: createMainColor({
+    main: '#ffffff',
+    contrastText: defaultDarkText.primary
+  }),
+  secondary: createMainColor({
+    main: '#F6F7FB',
+    contrastText: defaultDarkText.primary
+  })
+}
+
 // defaut palette
 export const defaultLightPalette: PaletteType = {
   type: 'light',
   main: defaultMainColors,
   colors: defaultColors,
-  background: {
-    primary: {
-      main: '#ffffff',
-      light: '#ffffff',
-      dark: '#ffffff',
-      contrastText: '#000000'
-    },
-    secondary: {
-      main: '#F6F7FB',
-      light: '#F6F7FB',
-      dark: '#F6F7FB',
-      contrastText: '#000000'
-    }
-  },
+  background: defaultLightThemeBackground,
   text: {
     light: defaultLightText,
     dark: defaultDarkText

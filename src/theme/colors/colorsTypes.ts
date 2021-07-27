@@ -15,7 +15,7 @@ export interface MainColorCreatorType {
 // Base colors of the App
 export type StepColorLevelsType =
   | 'default'
-  | 0
+  | 0.5
   | 1
   | 2
   | 3
@@ -25,7 +25,6 @@ export type StepColorLevelsType =
   | 7
   | 8
   | 9
-  | 10
 
 export type StepColorType = {
   [key in StepColorLevelsType]: string
