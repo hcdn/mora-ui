@@ -18,7 +18,7 @@ export const Box = styled.div.attrs<BoxProps, BoxWrapperProps>((props) => {
     colCount
   }
   return componentProps
-})<BoxWrapperProps>`
+})<BoxProps>`
   ${spacerMargin}
   ${spacerPadding}
 ${({ flex }) => flex && flexBox}
