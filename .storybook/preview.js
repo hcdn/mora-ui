@@ -1,6 +1,6 @@
 import React from 'react'
 import { withThemes } from '@react-theming/storybook-addon';
-import { defaultLightTheme, defaultDarkTheme } from '../src/theme/theme'
+import { defaultLightTheme, defaultDarkTheme, MoraGlobalStyle } from '../src/theme/theme'
 import { ThemeProvider } from 'styled-components';
 
 export const parameters = {
@@ -22,8 +22,16 @@ const withThemesDecorator = withThemes(ThemeProvider, [defaultLightTheme, defaul
 //       </ThemeProvider>
 //   )
 // }
+const withGlobalTheme = (Story, context) => {
+  return (
+    <>
+        <MoraGlobalStyle/>
+        <Story {...context}/>
+    </>
+  )
+}
 
-export const decorators = [withThemesDecorator]
+export const decorators = [withGlobalTheme, withThemesDecorator]
 
 
 // TODO: agregar temas aca y traducir documentacion
