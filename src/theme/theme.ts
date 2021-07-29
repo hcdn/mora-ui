@@ -2,7 +2,7 @@ import { defaultElevations } from './elevations/elevations'
 import { defaultLightPalette } from './palette/palette'
 import { defaultSizing } from './sizing/sizing'
 import { ThemeType } from './themeTypes'
-import 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 import { defaultFont } from './font/font'
 
 declare module 'styled-components' {
@@ -33,3 +33,12 @@ export const defaultDarkTheme: ThemeType = {
   name: 'darkTheme',
   type: 'dark'
 }
+
+export const MoraGlobalStyle = createGlobalStyle`
+  :root{
+    ${({ theme }) => css`
+      font-family: ${theme.font.family.sans};
+      color: ${theme.palette.background.primary.contrastText};
+    `}
+  }
+`
