@@ -1,21 +1,22 @@
 import styled, { css } from 'styled-components'
 import { cssGetSize, MainColorNameType } from '../../utils'
+import { cssBox } from '../Box/Box'
+import { BoxWrapperProps } from '../Box/BoxTypes'
 import { ButtonSize, ButtonVariant } from './ButtonTypes'
 
-interface ButtonContainerInteface {
+interface ButtonContainerInteface extends BoxWrapperProps {
   loading?: Boolean
   disabled?: Boolean
   fullWidth?: Boolean
-  grow?: Boolean
 }
 
 export const ButtonContainer = styled.div<ButtonContainerInteface>`
   display: inline-flex;
   position: relative;
-  ${({ grow }) => grow && 'flex-grow: 1;'}
   ${({ fullWidth }) => fullWidth && 'width: 100%;'}
-	${({ loading }) => loading && 'cursor:progress;'}
+  ${({ loading }) => loading && 'cursor:progress;'}
 	${({ disabled }) => disabled && 'pointer-events:none;'}
+  ${cssBox}
 `
 
 /**
@@ -85,7 +86,7 @@ export const ButtonMain = styled.button<ButtonMainInterface>`
     `}
 `
 
-const ButtonFilledCss = css<ButtonMainInterface>`
+export const ButtonFilledCss = css<ButtonMainInterface>`
   ${ButtonBaseCss}
   ${({ color, theme }) => {
     const buttonColor = theme.palette.main[color]
@@ -104,7 +105,7 @@ const ButtonFilledCss = css<ButtonMainInterface>`
 		`
   }}
 `
-const ButtonOutlineCss = css<ButtonMainInterface>`
+export const ButtonOutlineCss = css<ButtonMainInterface>`
   ${ButtonBaseCss}
   background-color: transparent;
   ${({ color, theme }) => {
@@ -120,7 +121,7 @@ const ButtonOutlineCss = css<ButtonMainInterface>`
   }}
 `
 
-const ButtonTextCss = css<ButtonMainInterface>`
+export const ButtonTextCss = css<ButtonMainInterface>`
   ${ButtonBaseCss}
   text-transform: uppercase;
   background-color: rgba(0, 0, 0, 0);

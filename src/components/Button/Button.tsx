@@ -8,11 +8,13 @@ import React, {
 import { ThemeContext } from 'styled-components'
 import { getMainColor, MainColorNameType } from '../../utils'
 import { useRipple } from '../../utils/ripple/ripple'
+import { transformBoxProps } from '../Box/Box'
+import { BoxProps } from '../Box/BoxTypes'
 import { Text } from '../Text/Text'
 import { ButtonContainer, ButtonMain } from './ButtonStyles'
 import { ButtonSize, ButtonVariant } from './ButtonTypes'
 
-export interface ButtonProps {
+export interface ButtonProps extends BoxProps {
   label?: string | number | Component
   size?: ButtonSize
   variant?: ButtonVariant
@@ -25,7 +27,6 @@ export interface ButtonProps {
   type?: 'button' | 'reset' | 'submit'
 }
 
-// TODO: refactor este para que herede del Box
 export const Button: FunctionComponent<ButtonProps> = ({
   label,
   children,
@@ -37,7 +38,8 @@ export const Button: FunctionComponent<ButtonProps> = ({
   size = 'medium',
   variant = 'filled',
   color = 'primary',
-  type = 'button'
+  type = 'button',
+  ...props
 }) => {
   const theme = useContext(ThemeContext)
   const selectedColor = getMainColor(color, theme)
@@ -53,6 +55,8 @@ export const Button: FunctionComponent<ButtonProps> = ({
   const [ClickEffect, rippleFromEvent /* _rippleFromPosition */] =
     useRipple(containerRef)
 
+  const boxProps = transformBoxProps(props)
+
   return (
     <ButtonContainer
       ref={containerRef}
@@ -61,6 +65,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
       disabled={disabled || loading}
       fullWidth={fullWidth}
       grow={grow}
+      {...boxProps}
     >
       <ButtonMain
         size={size}
