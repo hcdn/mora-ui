@@ -20,7 +20,7 @@ export abstract class MoraInput<
   constructor(props: InputProps, childState: InputState) {
     super(props)
     const defaultState = {
-      inputValue: '',
+      inputValue: undefined,
       isValid: false,
       renderError: false,
       errorMessage: false
@@ -47,8 +47,9 @@ export abstract class MoraInput<
       })
     })
 
-  componentDidMount() {
+  parentDidMount = () => {
     const context = this.context
+
     if (context) {
       this.inputId = uuidv4()
       context.addFormChildRef(this.inputId, this)
@@ -57,11 +58,19 @@ export abstract class MoraInput<
     setTimeout(this.silentValidate, 500)
   }
 
-  componentWillUnmount = () => {
+  componentDidMount() {
+    this.parentDidMount()
+  }
+
+  parentWillUnmount = () => {
     const context = this.context
     if (context && this.inputId) {
       context.removeFormChildRef(this.inputId)
     }
+  }
+
+  componentWillUnmount = () => {
+    this.parentWillUnmount()
   }
 
   silentValidate = () => {

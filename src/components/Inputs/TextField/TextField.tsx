@@ -9,6 +9,7 @@ import {
   InputHelper
 } from '../InputStyles/InputStyles'
 import { TextFieldProps, TextFieldState } from './TextFieldTypes'
+import { transformBoxProps } from '../../Box/Box'
 
 export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
   public static defaultProps = {
@@ -43,10 +44,8 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
   }
 
   resizeExtra = (type: 'pre' | 'post', width: number | undefined) => {
-    // console.log(width);
-
     this.setState((prevState) => {
-      const prop = `${type}_input_width`
+      const prop = `${type}InputWidth`
       return {
         ...prevState,
         [prop]: width
@@ -66,6 +65,7 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
   componentDidMount() {
     this.resizeExtra('pre', this.preInputRef.current?.offsetWidth || 0)
     this.resizeExtra('post', this.postInputRef.current?.offsetWidth || 0)
+    this.parentDidMount()
   }
 
   render() {
@@ -76,14 +76,28 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
         : this.props.autoComplete
         ? 'on'
         : 'off'
-    const hasValue = !!(this.props.value ?? !!this.state.inputValue)
     const showError: boolean =
       !!this.state.errorMessage && this.state.renderError
     const hasPreInput: boolean = !!this.props.preInputText
     const hasPostInput: boolean = !!this.props.postInputText
 
+    const value = this.props.value === null ? '' : this.props.value
+
+    const defaultValue =
+      this.props.defaultValue === null ? '' : this.props.defaultValue
+
+    const hasValue =
+      !!(this.props.value ?? !!this.state.inputValue) || !!defaultValue
+
+    /** Implement Box */
+    const boxProps = transformBoxProps(this.props)
+
     return (
-      <InputRoot style={this.props.style} className={this.props.className}>
+      <InputRoot
+        style={this.props.style}
+        className={this.props.className}
+        {...boxProps}
+      >
         <InputContainer
           error={!!this.state.renderError}
           hasValue={hasValue}
@@ -109,12 +123,13 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
             name={this.props.name}
             required={this.props.required}
             onChange={this.onChange}
-            value={this.props.value ?? this.state.inputValue}
+            value={value}
             ref={this.inputRef}
             type={type}
             min={this.props.min}
             max={this.props.max}
             autoComplete={autoComplete}
+            defaultValue={defaultValue}
           />
           {hasPostInput && (
             <ExtraInput
@@ -137,13 +152,3 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
     )
   }
 }
-
-//* *Example */
-// ;() => (
-//   <TextField
-//     onChange={({ is_valid }) => {
-//       console.log(is_valid)
-//     }}
-//     validations={[(v: string): ValidationResult => v != '' || 'Invalid name!']}
-//   />
-// )

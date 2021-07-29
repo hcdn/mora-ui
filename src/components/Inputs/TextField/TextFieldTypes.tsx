@@ -1,6 +1,7 @@
+import { BoxProps } from '../../Box/BoxTypes'
 import { MoraInputProps } from '../MoraInput'
 
-export interface TextFieldProps extends MoraInputProps {
+export interface TextFieldProps extends MoraInputProps, BoxProps {
   /** Type of text input. */
   type: 'text' | 'number' | 'email' | 'password'
   /** Minimum amount of characters in string. */
@@ -17,7 +18,9 @@ export interface TextFieldProps extends MoraInputProps {
   /** Helper text below the input */
   helperText?: string
   /** Value of the input */
-  value?: string
+  value?: string | number | null
+  /** Default value of input */
+  defaultValue?: string | number | null
 }
 
 export interface TextFieldState {

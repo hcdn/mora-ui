@@ -1,35 +1,34 @@
 import styled, { css } from 'styled-components'
 import { cssGetMainColor } from '../../../utils'
+import { cssBox } from '../../Box/Box'
+import { BoxWrapperProps } from '../../Box/BoxTypes'
+import { Text } from '../../Text/Text'
 
 // General input vars
 const transitionCurve = '200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
-const spaceTop = 1.1
-const spaceBottom = 0.6
+const spaceTop = 1.2
+const spaceBottom = 0.5
 const spaceLeft = 1.2
 const spaceRight = 1.2
 const inputHeight = 3
+const helpersMarginTop = 0.3
 
-export const InputError = styled.div`
+export const InputError = styled(Text)`
   color: ${cssGetMainColor('error', 'main')};
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
+  margin-top: ${helpersMarginTop}rem;
   text-align: left;
   padding-left: ${spaceLeft}rem;
   padding-right: ${spaceRight}rem;
 `
 
-export const InputHelper = styled.div`
-  color: ${({ theme }) => theme.palette.divider};
-  margin-top: 0.5rem;
-  font-size: 1.3rem;
-  font-weight: 600;
+export const InputHelper = styled(Text)`
+  margin-top: ${helpersMarginTop}rem;
   text-align: left;
   padding-left: ${spaceLeft}rem;
   padding-right: ${spaceRight}rem;
 `
 
-interface InputRootProps {
+interface InputRootProps extends BoxWrapperProps {
   readonly?: boolean
 }
 
@@ -48,13 +47,14 @@ export const InputRoot = styled.div<InputRootProps>`
       pointer-events: none;
       user-select: none;
     `}
+  ${cssBox}
 `
 
 export interface InputLabelProps {
   required?: boolean
 }
 
-export const InputLabel = styled.div<InputLabelProps>`
+export const InputLabel = styled(Text)<InputLabelProps>`
   ${({ required }) =>
     required &&
     css`
@@ -104,7 +104,7 @@ export const InputContainer = styled.div<InputContainerProps>`
   position: relative;
   background-color: ${({ theme }) => theme.palette.background.secondary.main};
   color: ${({ theme }) => theme.palette.background.secondary.contrastText};
-  box-shadow: 0 0 0 0.1rem
+  box-shadow: 0 0 0 1px
     ${({ theme }) => theme.palette.background.secondary.dark};
   transition: background-color ${transitionCurve}, box-shadow ${transitionCurve};
   border-radius: 0.5rem;
@@ -130,11 +130,12 @@ export const InputContainer = styled.div<InputContainerProps>`
     padding-top: ${spaceTop}rem;
     padding-bottom: ${spaceBottom}rem;
     padding-left: ${({ preInputWidth }) =>
-      preInputWidth ? preInputWidth / 10 + 0.1 : spaceLeft}rem;
+      preInputWidth ? `${preInputWidth + 2}px` : `${spaceLeft}rem`};
+
     padding-right: ${({ postInputWidth }) =>
-      postInputWidth ? postInputWidth / 10 + 0.1 : spaceRight}rem;
+      postInputWidth ? `${postInputWidth + 2}px` : `${spaceRight}rem`};
+
     font-weight: 500;
-    min-width: 20.594rem;
     height: ${inputHeight}rem;
     &:focus {
       outline: none;
