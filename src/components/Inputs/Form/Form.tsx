@@ -46,6 +46,8 @@ export const Form: FunctionComponent<FormProps> = ({
       input.validateInput()
     )
     Promise.all(validations).then((values) => {
+      console.log(values)
+
       const validForm = values.every((v) => v.isValid)
       if (validForm) {
         if (props.onSubmit) {
