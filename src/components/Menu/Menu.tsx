@@ -8,15 +8,16 @@ import { MenuItemProps, MenuProps } from './MenuTypes'
 export const MenuItem = styled(Box).attrs<MenuItemProps>(({ selected, icon, label, ...props}) => {
   const wChildren = (
     <>
-      <div>{icon}</div>
+      <span>{icon}</span>
       <Text >{label}</Text>
     </>
   );
   return { 
-    space: 2,
+    space: 3,
     py: 4,
     px: 4,
     flex: true,
+    noWrap: true,
     fontSize: cssGetSize(3),
     children: wChildren,
     ...props,
@@ -43,12 +44,11 @@ export const MenuItem = styled(Box).attrs<MenuItemProps>(({ selected, icon, labe
   }
 `
 
-export const Menu = styled(Box).attrs<MenuProps>(({ maxWidth, ...props}) => {
+export const Menu = styled(Box).attrs<MenuProps>(({ width, closedSize, closed, ...props}) => {
   return { 
     ...props,
   }
 })<MenuProps>`
-max-width: ${({maxWidth})=>cssGetSize(maxWidth)}
-
-
+width: ${({width, closed = false, closedSize})=>cssGetSize(closed ? (closedSize ?? 10) : width)};
+overflow: hidden;
 `

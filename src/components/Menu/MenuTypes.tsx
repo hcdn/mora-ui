@@ -1,3 +1,5 @@
+import { BoxProps } from "../Box/BoxTypes";
+
 export interface MenuItemProps extends BoxProps {
   label: string,
   icon?: any,
@@ -5,5 +7,7 @@ export interface MenuItemProps extends BoxProps {
 }
 
 export interface MenuProps extends BoxProps {
-  maxWidth: number,
+  width: number,
+  closedSize?: number,
+  closed?: boolean
 }
