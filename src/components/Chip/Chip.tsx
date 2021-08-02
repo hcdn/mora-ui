@@ -44,7 +44,7 @@ const StyleVariants = {
   text: TextStyle
 }
 
-export const Chip = styled(Box).attrs<ChipProps>(({variant, ...props}) => {
+export const Chip = styled(Box).attrs<ChipProps>(({ ...props }) => {
   return {
     as: 'span',
     flex: true,
@@ -53,12 +53,12 @@ export const Chip = styled(Box).attrs<ChipProps>(({variant, ...props}) => {
     space: 2,
     py: 1,
     px: 2,
-    ...props,
+    ...props
   }
 })<ChipProps>`
   display: inline-flex;
-  font-weigth: bold;
+  font-weight: 600;
   font-size: ${cssGetSize(3)};
   border-radius: ${cssGetSize(4)};
-  ${({variant = 'filled'}) => StyleVariants[variant]}
+  ${({ variant = 'filled' }) => StyleVariants[variant]}
 `

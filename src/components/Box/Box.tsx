@@ -17,7 +17,7 @@ export const cssBox = css<BoxWrapperProps>`
   ${({ align }) => cssGetProp('align-items', align)}
   ${({ justify }) => cssGetProp('justify-content', justify)}
   ${({ space, direction = 'row', theme }) =>
-    space &&
+    space !== undefined &&
     `
     & > *:not(:last-child) {
       ${buildInnerSpace(getSize(space, theme), direction)}
