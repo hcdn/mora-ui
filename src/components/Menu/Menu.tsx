@@ -49,6 +49,6 @@ export const Menu = styled(Box).attrs<MenuProps>(({ width, closedSize, closed, .
     ...props,
   }
 })<MenuProps>`
-width: ${({width, closed = false, closedSize})=>cssGetSize(closed ? (closedSize ?? 10) : width)};
+width: ${({width = 50, closed = false, closedSize = 10 })=>cssGetSize(closed ? closedSize : width)};
 overflow: hidden;
 `
