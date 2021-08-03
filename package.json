@@ -1,6 +1,6 @@
 {
   "name": "mora-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "mora-ui es una librería de React para desarrollar sistemas de la Honorable Cámara de Diputados de la Nación.",
   "author": "Secretaría General de la Presidencia - Honorable Cámara de Diputados de la Nación",
   "license": "MIT",
