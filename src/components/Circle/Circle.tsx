@@ -15,10 +15,12 @@ export interface CircleProps extends BoxProps {
   size?: number | string
 }
 
-export const Circle = styled(Box).attrs(({ children, ...props }) => {
-  const wChildren = <Wrapper>{children}</Wrapper>
-  return { ...props, children: wChildren }
-})<CircleProps>`
+export const Circle = styled(Box).attrs<CircleProps, CircleProps>(
+  ({ children, ...props }) => {
+    const wChildren = <Wrapper>{children}</Wrapper>
+    return { ...props, children: wChildren }
+  }
+)<CircleProps>`
   border-radius: 50%;
   position: relative;
   width: ${({ size }) => cssGetSize(size ?? 10)};
