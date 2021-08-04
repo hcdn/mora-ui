@@ -16,7 +16,7 @@ export const MenuItem = styled(Box).attrs<MenuItemProps>(
   ({ icon, label, ...props }) => {
     const wChildren = (
       <>
-        <Icon>{icon}</Icon>
+        {icon && <Icon>{icon}</Icon>}
         <Text>{label}</Text>
       </>
     )

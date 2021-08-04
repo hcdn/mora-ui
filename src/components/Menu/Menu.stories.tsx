@@ -20,10 +20,10 @@ export const ExampleMenu = () => {
   return (
     <>
       <Menu width={40} closedSize={12} closed={toggleMenu}>
-        <MenuItem icon='☺' label='Icono' />
-        <MenuItem icon='☺' label='Icono' />
-        <MenuItem selected icon='☺' label='Icono' />
-        <MenuItem icon='☺' label='Icono' />
+        <MenuItem icon=' ' label='Files' />
+        <MenuItem icon='☺' label='Archive' />
+        <MenuItem selected icon='☺' label='Directory' />
+        <MenuItem icon='☺' label='' />
       </Menu>
 
       <Button mt={4} size='small' onClick={() => setToggleMenu(!toggleMenu)}>
