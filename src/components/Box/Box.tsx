@@ -28,7 +28,7 @@ export const cssBox = css<BoxWrapperProps>`
     `
     display: grid;
     grid-template-columns: repeat(${getColCount(colCount, theme)}, 1fr);
-    grid-gap: ${theme.layout.colGap + 'rem'};
+    grid-gap: ${getSize(theme.layout.colGap, theme)};
     & > * {
       min-width: 0;
     }
