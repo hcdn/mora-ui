@@ -12,21 +12,33 @@ const Icon = styled.span`
   justify-content: center;
 `
 
+const SubMenu = styled.div`
+  position: absolute;
+  top: 0;
+  left: 100%;
+`
+const Hidder = styled(Box).attrs({
+  space: 3,
+  py: 4,
+  flex: true,
+  noWrap: true,
+  fontSize: cssGetSize(3)
+})`
+  overflow: hidden;
+`
+
 export const MenuItem = styled(Box).attrs<MenuItemProps>(
-  ({ icon, label, ...props }) => {
+  ({ subMenu, selected, icon, label, ...props }) => {
     const wChildren = (
       <>
-        {icon && <Icon>{icon}</Icon>}
-        <Text>{label}</Text>
+        <Hidder>
+          {icon && <Icon>{icon}</Icon>}
+          <Text pl={2}>{label}</Text>
+        </Hidder>
+        {subMenu && selected && <SubMenu>{subMenu}</SubMenu>}
       </>
     )
     return {
-      space: 3,
-      py: 4,
-      pr: 4,
-      flex: true,
-      noWrap: true,
-      fontSize: cssGetSize(3),
       children: wChildren,
       ...props
     }
@@ -64,6 +76,5 @@ export const MenuItem = styled(Box).attrs<MenuItemProps>(
 export const Menu = styled(Box)<MenuProps>`
   width: ${({ width = 50, closed = false, closedSize = 12 }) =>
     cssGetSize(closed ? closedSize : width)};
-  overflow: hidden;
   transition: width 0.5s;
 `
