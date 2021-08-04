@@ -8,9 +8,9 @@ import { Text } from '../../Text/Text'
 const transitionCurve = '200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
 const spaceTop = 1.2
 const spaceBottom = 0.5
-const spaceLeft = 1.2
-const spaceRight = 1.2
-const inputHeight = 3
+const spaceLeft = 1
+const spaceRight = 1
+const inputHeight = 2.7
 const helpersMarginTop = 0.3
 
 export const InputError = styled(Text)`
