@@ -22,7 +22,7 @@ export const OutlineStyle = css<ChipProps>`
     return `
 			color: ${chipColor.main};
 			background-color: transparent;
-      border: 1px solid ${chipColor.main};
+      box-shadow: 0 0 0 1px ${chipColor.main} inset;
 		`
   }}
 `
@@ -35,6 +35,7 @@ export const TextStyle = css<ChipProps>`
     return `
 			color: ${chipColor.main};
 			background-color: transparent;
+      box-shadow: 0 0 0 1px transparent inset;
 		`
   }}
 `

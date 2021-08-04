@@ -17,17 +17,18 @@ export default {
 export const ExampleMenu = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
 
-  return(
-  <>
-    <Menu width={40} closedSize={10} closed={toggleMenu}>
-      <MenuItem icon="☺" label="Icono"/> 
-      <MenuItem icon="☺" label="Icono"/> 
-      <MenuItem selected icon="☺" label="Icono"/> 
-      <MenuItem icon="☺" label="Icono"/> 
-    </Menu>
+  return (
+    <>
+      <Menu width={40} closedSize={12} closed={toggleMenu}>
+        <MenuItem icon='☺' label='Icono' />
+        <MenuItem icon='☺' label='Icono' />
+        <MenuItem selected icon='☺' label='Icono' />
+        <MenuItem icon='☺' label='Icono' />
+      </Menu>
 
-    <Button mt={4} size="small" onClick={()=>setToggleMenu(!toggleMenu)}>Toggle!</Button>
-  </>
+      <Button mt={4} size='small' onClick={() => setToggleMenu(!toggleMenu)}>
+        Toggle!
+      </Button>
+    </>
   )
-  
 }
