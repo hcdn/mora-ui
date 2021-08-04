@@ -1,5 +1,5 @@
 import { css, DefaultTheme } from 'styled-components'
-import { cssGetSize } from '../../utils'
+import { cssGetSize, getSize } from '../../utils'
 import {
   BoxWrapperProps,
   containerMaxSizesInterface,
@@ -24,8 +24,8 @@ export const buildContainer = ({ size, padding }: ContainerProps) => css`
   max-width: ${cssGetSize(getContainerMaxWidth(size))};
   ${padding &&
   css`
-    padding-left: ${({ theme }) => theme.layout.colGap}rem;
-    padding-right: ${({ theme }) => theme.layout.colGap}rem;
+    padding-left: ${({ theme }) => getSize(theme.layout.colGap, theme)};
+    padding-right: ${({ theme }) => getSize(theme.layout.colGap, theme)};
   `}
   margin: 0 auto;
   position: relative;

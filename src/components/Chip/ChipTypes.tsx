@@ -1,14 +1,10 @@
 import { MainColorNameType } from '../../utils'
-import { BoxProps, BoxWrapperProps } from '../Box/BoxTypes'
+import { BoxProps } from '../Box/BoxTypes'
+
+type Variant = 'filled' | 'outline' | 'text'
 
 export interface ChipProps extends BoxProps {
   color?: MainColorNameType
-  variant?: 'filled' | 'outline' | 'text'
-  disabled?: boolean
-}
-
-export interface ChipWrapperProps extends BoxWrapperProps {
-  color?: MainColorNameType
-  variant?: 'filled' | 'outline' | 'text'
+  variant?: Variant,
   disabled?: boolean
 }
