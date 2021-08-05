@@ -16,13 +16,12 @@ export const Text = styled(Box).attrs(
     }
 
     const elementProps = {
+      textColor: props.color,
       ...selectedVariant.props,
       ...props,
       cssStyles: elementCss,
       as: ElementTag
     }
-    // console.log(elementProps)
-
     return elementProps
   }
 )<TextProps>`

@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react'
-import { CssStylesInterface } from '../../utils'
+import { CssStylesInterface, TextColorNamesType } from '../../utils'
 import { BoxProps } from '../Box/BoxTypes'
 
 export type TypographyVariantsLevels =
@@ -35,6 +35,7 @@ export interface TextProps extends BoxProps {
   variant?: TypographyVariantsLevels
   // Change the rendered tag
   component?: keyof JSX.IntrinsicElements
+  color?: TextColorNamesType
 }
 
 export interface TextStylesProps extends CssStylesInterface {

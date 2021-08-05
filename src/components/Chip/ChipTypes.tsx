@@ -5,6 +5,6 @@ type Variant = 'filled' | 'outline' | 'text'
 
 export interface ChipProps extends BoxProps {
   color?: MainColorNameType
-  variant?: Variant,
+  variant?: Variant
   disabled?: boolean
 }
