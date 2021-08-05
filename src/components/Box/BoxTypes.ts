@@ -1,7 +1,8 @@
 import {
   CssStylesInterface,
   MarignSpacerInterface,
-  PaddingSpacerInterface
+  PaddingSpacerInterface,
+  TextColorNamesType
 } from '../../utils'
 import { UseBackgroundInterface } from '../../utils/colors/getBackground'
 
@@ -32,6 +33,7 @@ export interface BoxWrapperProps
   flex?: boolean
   container?: boolean
   containerSize?: ContainerSizeType | number
+  textColor?: TextColorNamesType
 }
 export interface BoxProps
   extends MarignSpacerInterface,

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import { cssCreateStyles, cssGetProp, getSize } from '../../utils'
 import { cssUseBackground } from '../../utils/colors/getBackground'
+import { cssGetTextColor } from '../../utils/colors/getTextColor'
 import { spacerMargin, spacerPadding } from '../../utils/spacer'
 import {
   buildContainer,
@@ -41,6 +42,7 @@ export const cssBox = css<BoxWrapperProps>`
     `
       flex-grow: ${grow ? 1 : 0};
     `}
+  ${cssGetTextColor}
   ${cssUseBackground}
   ${cssCreateStyles}
 `

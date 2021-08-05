@@ -7,6 +7,13 @@ import {
 } from '../../theme/colors/colorsTypes'
 
 export type MainColorNameType = keyof DefaultTheme['palette']['main']
+export type TextColorNamesType =
+  | 'backgroundPrimary'
+  | 'backgroundSecondary'
+  | 'textLight'
+  | 'textDark'
+  | MainColorNameType
+  | string
 
 export const getMainColor = (
   color: MainColorNameType,

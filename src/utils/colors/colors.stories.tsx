@@ -2,7 +2,7 @@ import React from 'react'
 import { createRangeColor } from '../../theme/colors/colors'
 import { usePalette } from './usePalette'
 import { Text } from '../../components/Text/Text'
-import { Box } from '../../components'
+import { Box, Card } from '../../components'
 
 export default {
   title: 'Utils/Colors'
@@ -70,4 +70,34 @@ export const backgroundColors = () => {
     )
   }
   return <Example />
+}
+
+export const TextColor = () => {
+  const Example = () => {
+    const palette = usePalette()
+    return (
+      <Box container textColor='error'>
+        <Card mb={4}>
+          <Text>All children will have 'error' color.</Text>
+          <Text color='primary'>Manually override text color.</Text>
+        </Card>
+        <Text color='textDark'>Theme font dark color.</Text>
+        <Text color='rgba(0, 100, 100, .7)'>Custom color.</Text>
+        <Text color={palette.colors.blue[4]}>Use other color from theme.</Text>
+      </Box>
+    )
+  }
+  return <Example />
+}
+
+export const BackgroundAndTextVariants = () => {
+  return (
+    <Card
+      container
+      background='backgroundSecondary'
+      textColor='backgroundSecondary'
+    >
+      <Text>Automatic contrast text for secondary background.</Text>
+    </Card>
+  )
 }
