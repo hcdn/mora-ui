@@ -24,6 +24,7 @@ export const ExampleMenu = () => {
         <MenuItem icon='☺' label='Archive' />
         <MenuItem selected icon='☺' label='Directory' />
         <MenuItem icon='☺' label='' />
+        <MenuItem label='Label' />
       </Menu>
 
       <Button mt={4} size='small' onClick={() => setToggleMenu(!toggleMenu)}>
