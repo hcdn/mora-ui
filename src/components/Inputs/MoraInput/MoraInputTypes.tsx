@@ -28,6 +28,8 @@ export interface MoraInputProps {
   //* * Input name. */
   name?: string
   style?: CSSProperties
+  /** Helper text below the input */
+  helperText?: string
 }
 
 export type MoraInputState<T> = T & {

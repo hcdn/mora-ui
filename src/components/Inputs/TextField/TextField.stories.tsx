@@ -32,14 +32,14 @@ export default {
  * Chips
  */
 export const Index = () => {
-  const [inputVaue, setInputValue] = useState('Input value')
+  const [inputValue, setInputValue] = useState('Input value')
   const handleChange: OnChangeFunction = (e) => {
     setInputValue(e.value)
   }
   return (
     <TextField
       label='My label'
-      value={inputVaue}
+      value={inputValue}
       onChange={handleChange}
       helperText='Helper text'
     />

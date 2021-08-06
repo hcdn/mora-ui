@@ -6,11 +6,11 @@ import { Text } from '../../Text/Text'
 
 // General input vars
 const transitionCurve = '200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
-const spaceTop = 1.2
-const spaceBottom = 0.5
+const spaceTop = 1
+const spaceBottom = 0.3
 const spaceLeft = 1
 const spaceRight = 1
-const inputHeight = 2.7
+const inputHeight = 2.8
 const helpersMarginTop = 0.3
 
 export const InputError = styled(Text)`
@@ -98,6 +98,7 @@ export interface InputContainerProps {
   error: boolean
   preInputWidth: number
   postInputWidth: number
+  type?: 'select'
 }
 
 export const InputContainer = styled.div<InputContainerProps>`
@@ -141,6 +142,24 @@ export const InputContainer = styled.div<InputContainerProps>`
       outline: none;
     }
   }
+  select {
+    appearance: none;
+    cursor: pointer;
+  }
+  ${({ type }) =>
+    type === 'select' &&
+    css`
+      &:after {
+        pointer-events: none;
+        content: '▼';
+        font-size: 0.7rem;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0.5rem;
+        position: absolute;
+        opacity: 0.7;
+      }
+    `}
   ${InputLabel} {
     position: absolute;
     pointer-events: none;

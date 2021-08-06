@@ -10,13 +10,12 @@ export interface TextFieldProps extends MoraInputProps, BoxProps {
   maxLength?: number
   min?: number
   max?: number
+  /** Autocomplete value */
   autoComplete?: boolean
   /** Text to show before the input */
   preInputText?: string
   /** Text to show after the input */
   postInputText?: string
-  /** Helper text below the input */
-  helperText?: string
   /** Value of the input */
   value?: string | number | null
   /** Default value of input */
