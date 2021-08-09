@@ -96,9 +96,9 @@ export const ExtraInput = styled.div<ExtraInputInterface>`
 export interface InputContainerProps {
   hasValue: boolean
   error: boolean
-  preInputWidth: number
-  postInputWidth: number
-  type?: 'select'
+  preInputWidth?: number
+  postInputWidth?: number
+  type?: 'select' | 'file'
 }
 
 export const InputContainer = styled.div<InputContainerProps>`
@@ -117,7 +117,8 @@ export const InputContainer = styled.div<InputContainerProps>`
   }
   input,
   select,
-  textarea {
+  textarea,
+  .selectedFileNames {
     font: inherit;
     color: currentColor;
     width: 100%;
@@ -158,6 +159,16 @@ export const InputContainer = styled.div<InputContainerProps>`
         right: 0.5rem;
         position: absolute;
         opacity: 0.7;
+      }
+    `}
+  ${({ type }) =>
+    type === 'file' &&
+    css`
+      cursor: pointer;
+      color: ${cssGetMainColor('primary')};
+      input {
+        cursor: pointer;
+        visibility: hidden;
       }
     `}
   ${InputLabel} {
