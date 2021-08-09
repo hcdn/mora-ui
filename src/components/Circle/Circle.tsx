@@ -19,10 +19,10 @@ export interface CircleProps extends BoxProps {
 export const Circle = styled(Box).attrs<CircleProps, CircleProps>(
   ({ directChildren, children, ...props }) => {
     const wChildren = (
-      <>
+      <React.Fragment>
         {directChildren}
         <Wrapper>{children}</Wrapper>
-      </>
+      </React.Fragment>
     )
     return { ...props, children: wChildren }
   }
