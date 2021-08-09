@@ -57,7 +57,7 @@ import { MyBadge } from './MyBadge'
   language='tsx'
   dark
   code={dedent`
-import { FC } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 import { Box, BoxProps } from 'mora-ui'
  
@@ -65,7 +65,7 @@ interface MyButtonProps extends BoxProps {
   size?: 'big' | 'small'
 }
  
-type MyButtonPropsType = FC<MyButtonProps>['arguments'] 
+type MyButtonPropsType = React.Component<MyButtonProps>['props']
  
 // Transform the props
 const MyButtonAttrs = ({ size = 'big', ...props }: MyButtonPropsType): MyButtonPropsType => {
@@ -109,7 +109,7 @@ import { MyButton } from './MyButton'
   language='tsx'
   dark
   code={dedent`
-import React, { FC } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 import { Card, CardProps } from 'mora-ui'
  
@@ -117,7 +117,7 @@ interface MyCardProps extends CardProps {
   title?: 'string'
 }
  
-type MyCardPropsType = FC<MyCardProps>['arguments'] 
+type MyCardPropsType = React.Component<MyCardProps>['props']
  
 const MyCardAttrs = ({ title, children, ...props }: MyCardPropsType): MyCardPropsType => {
   // Change the component's children prop
@@ -159,7 +159,7 @@ const attrsFn = (props: propsInterfaceA): propsInterfaceB => {}
   language='tsx'
   dark
   code={dedent`
-import { FC } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 import { Box, BoxProps } from 'mora-ui'
  
@@ -173,8 +173,8 @@ interface MyButtonTransormedProps extends BoxProps {
   otherProp: string
 }
  
-type MyButtonPropsType = FC<MyButtonProps>['arguments'] 
-type MyButtonTransformedPropsType = FC<MyButtonTransormedProps>['arguments']
+type MyButtonPropsType = React.Component<MyButtonProps>['props']
+type MyButtonPropsType = React.Component<MyButtonTransormedProps>['props']
  
 // Transform the props
 const MyButtonAttrs = ({

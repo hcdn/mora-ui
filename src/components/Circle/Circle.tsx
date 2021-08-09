@@ -13,11 +13,17 @@ const Wrapper = styled.div`
 
 export interface CircleProps extends BoxProps {
   size?: number | string
+  directChildren?: any
 }
 
 export const Circle = styled(Box).attrs<CircleProps, CircleProps>(
-  ({ children, ...props }) => {
-    const wChildren = <Wrapper>{children}</Wrapper>
+  ({ directChildren, children, ...props }) => {
+    const wChildren = (
+      <>
+        {directChildren}
+        <Wrapper>{children}</Wrapper>
+      </>
+    )
     return { ...props, children: wChildren }
   }
 )<CircleProps>`
