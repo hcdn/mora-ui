@@ -7,9 +7,9 @@ const clickEffectAnimation = (opacity: number = 0.3) => keyframes`
 		width: 50%;
 	}
 	70% {
-		opacity: 0;
-	}
+  }
 	100% {
+    opacity: 0;
 		width: 100%;
 		top: 50%;
 		left: 50%;
@@ -25,7 +25,7 @@ export const ClickEffectContainer = styled.div<ClickEffectContainerProps>`
       animation-fill-mode: forwards;
       opacity: 0;
       /* width: 50%; */
-      animation: ${clickEffectAnimation(opacity)} 0.3s ease-out;
+      animation: ${clickEffectAnimation(opacity)} 0.2s ease-out;
       &:before {
         content: '';
         transform: translate(-100%, -50%);

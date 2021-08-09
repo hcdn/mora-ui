@@ -4,6 +4,7 @@ import { defaultSizing } from './sizing/sizing'
 import { ThemeType } from './themeTypes'
 import { createGlobalStyle, css } from 'styled-components'
 import { defaultFont } from './font/font'
+import { setTextColor } from '../utils'
 
 declare module 'styled-components' {
   export interface DefaultTheme extends ThemeType {}
@@ -39,6 +40,7 @@ export const MoraGlobalStyle = createGlobalStyle`
     ${({ theme }) => css`
       font-family: ${theme.font.family.sans};
       color: ${theme.palette.background.primary.contrastText};
+      ${setTextColor(theme, 'backgroundPrimary')}
     `}
   }
 `
