@@ -1,0 +1,201 @@
+import { Meta, Source } from '@storybook/addon-docs';
+import dedent from 'ts-dedent'
+
+<Meta title="Advanced/Component creation" />
+
+# Component creation
+
+## Extending the Box 🚀
+You can create a component that uses all of the BoxProps to create a base layout.
+
+
+<Source
+  language='tsx'
+  dark
+  code={dedent`
+import styled, { css } from 'styled-components'
+import { Box, BoxProps } from 'mora-ui'
+ 
+// Component props
+interface MyBadgeProps extends BoxProps {
+  color?: string
+}
+ 
+// Component styles
+const MyBadgeStyles = css<MyBadgeProps>\`
+  color: \${color || 'blue'};
+  border-radius: 1rem;
+\`
+ 
+// Main component
+export const MyBadge = styled(Box)<MyBadgeProps>\`
+  \${MyBadgeStyles}
+\`
+`}
+/>
+
+<Source
+  language='tsx'
+  dark
+  code={dedent`
+import { MyBadge } from './MyBadge'
+// Now you can use any BoxProp
+<MyBadge color='red' mt={4} p={2}>
+  hi!
+</MyBadge>
+`}
+/>
+
+## Using attrs ⚙️
+>Attrs is a chainable method that attaches some props to a styled component. The first and only argument is an object that will be merged into the rest of the component's props.
+
+[attrs docs](https://styled-components.com/docs/api#attrs)
+
+**userProps => ⚙️attrsFunction() => finalTransformedProps**
+
+<Source
+  language='tsx'
+  dark
+  code={dedent`
+import { FC } from 'react'
+import styled, { css } from 'styled-components'
+import { Box, BoxProps } from 'mora-ui'
+ 
+interface MyButtonProps extends BoxProps {
+  size?: 'big' | 'small'
+}
+ 
+type MyButtonPropsType = FC<MyButtonProps>['arguments'] 
+ 
+// Transform the props
+const MyButtonAttrs = ({ size = 'big', ...props }: MyButtonPropsType): MyButtonPropsType => {
+  return {
+    size,
+    // Set some default BoxProps to style the component
+    flex: true,
+    p: size === 'big' ? 5 : 3,
+    space: size === 'big' ? 4 : 2,
+    as:'button'
+    ...props
+  }
+}
+ 
+// Other styles
+const MyButtonStyles = css<MyButtonProps>\`\`
+ 
+// Main component
+export const MyButton = styled(Box).attrs<MyButtonProps>(
+  MyButtonAttrs
+)<MyButtonProps>\`
+  \${MyButtonStyles}
+\`
+`}
+/>
+
+<Source
+  language='tsx'
+  dark
+  code={dedent`
+import { MyButton } from './MyButton'
+// Now you can use any BoxProp
+<MyButton size='small' mt={4} />
+`}
+/>
+
+
+## Trasnform the children component
+
+<Source
+  language='tsx'
+  dark
+  code={dedent`
+import React, { FC } from 'react'
+import styled, { css } from 'styled-components'
+import { Card, CardProps } from 'mora-ui'
+ 
+interface MyCardProps extends CardProps {
+  title?: 'string'
+}
+ 
+type MyCardPropsType = FC<MyCardProps>['arguments'] 
+ 
+const MyCardAttrs = ({ title, children, ...props }: MyCardPropsType): MyCardPropsType => {
+  // Change the component's children prop
+  const transformedChildren = (
+    <>
+      {title && <h2>{title}</h2>}
+      {children}
+    </>
+  )
+  return {
+    size,
+    children: transformedChildren
+    ...props
+  }
+}
+ 
+const MyCardStyles = css<MyCardProps>\`\`
+ 
+export const MyCard = styled(Card).attrs<MyCardProps>(
+  MyCardAttrs
+)<MyCardProps>\`
+  \${MyCardStyles}
+\`
+`}
+/>
+
+## Changing the props interface
+
+The attrs function can edit the props interface.
+
+<Source
+  language='tsx'
+  dark
+  code={dedent`
+const attrsFn = (props: propsInterfaceA): propsInterfaceB => {}
+`} />
+
+<Source
+  language='tsx'
+  dark
+  code={dedent`
+import { FC } from 'react'
+import styled, { css } from 'styled-components'
+import { Box, BoxProps } from 'mora-ui'
+ 
+// Component props
+interface MyButtonProps extends BoxProps {
+  variant?: 'success' | 'error'
+}
+ 
+// Props after attrs fuction
+interface MyButtonTransormedProps extends BoxProps {
+  otherProp: string
+}
+ 
+type MyButtonPropsType = FC<MyButtonProps>['arguments'] 
+type MyButtonTransformedPropsType = FC<MyButtonTransormedProps>['arguments']
+ 
+// Transform the props
+const MyButtonAttrs = ({
+  variant = 'success',
+  ...props
+}: MyButtonPropsType): MyButtonTransformedPropsType => {
+  // The result doesn't contain the "variant" prop
+  return {
+    background: variant === 'success' ? 'green' : 'red',
+    otherProp: 'otherValue',
+    ...props
+  }
+}
+ 
+const MyButtonStyles = css<MyButtonProps>\`\`
+ 
+//                                        Interfaces here!
+export const MyButton = styled(Box).attrs<MyButtonProps, MyButtonTransormedProps>(
+  MyButtonAttrs
+)<MyButtonProps>\`
+  \${MyButtonStyles}
+\`
+`}
+/>
