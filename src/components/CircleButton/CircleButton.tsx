@@ -64,8 +64,7 @@ export const CircleButton: FC<CircleButtonProps> = ({
   const rippleColor = rippleColors[variant]
 
   const containerRef = useRef<any>()
-  const [ClickEffect, rippleFromEvent, __rippleFromPosition] =
-    useRipple(containerRef)
+  const [ClickEffect, rippleFromEvent] = useRipple(containerRef)
 
   const handleOnClick = (e: any) => {
     rippleFromEvent(e)

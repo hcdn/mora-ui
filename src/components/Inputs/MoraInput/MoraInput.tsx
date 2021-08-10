@@ -77,7 +77,9 @@ export abstract class MoraInput<
     this.validateInput(true)
   }
 
-  onChange = (e: any): void => {
+  onChange = (e: any): boolean => {
+    e.preventDefault()
+    e.stopPropagation()
     this.validateInput().then(() => {
       // todo: if async validation, wait
       if (typeof this.props.onChange === 'function') {
@@ -90,6 +92,7 @@ export abstract class MoraInput<
         })
       }
     })
+    return false
   }
 
   updateErrorRender = () => {

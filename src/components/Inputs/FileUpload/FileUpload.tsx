@@ -32,16 +32,15 @@ export class FileUpload extends MoraInput<FileUploadProps, {}> {
 
   getValue = (): FileList | null => {
     const value = this.inputRef.current?.files || null
-    console.log(value)
-
     return value
   }
 
-  onDelete = (e: any) => {
+  onDelete = (_e: any) => {
     if (this.inputRef.current) {
-      this.inputRef.current.files = null
       this.inputRef.current.value = ''
-      this.onChange(e)
+      const ev: any = new Event('change', { bubbles: true })
+      ev.simulated = true
+      this.inputRef.current.dispatchEvent(ev)
     }
   }
 

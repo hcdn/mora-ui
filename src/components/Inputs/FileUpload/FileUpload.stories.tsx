@@ -41,15 +41,12 @@ export const SingleFile = () => {
 }
 
 export const MultipleFiles = () => {
-  const [inputValue, setInputValue] = useState<FileList | null>(null)
-  const handleChange: OnChangeFunction = ({ value }) => {
-    console.log('CHANGED')
-    console.log(value)
-    setInputValue(value)
+  const [inputValue, setInputValue] = useState<File[] | null>(null)
+  const handleChange: OnChangeFunction = (data) => {
+    const files = Array.from<File>(data.value)
+    setInputValue(files)
   }
-  const fileNames = inputValue
-    ? Array.from(inputValue).map((file) => file.name)
-    : []
+  const fileNames = inputValue ? inputValue.map((file) => file.name) : []
   return (
     <>
       <FileUpload
