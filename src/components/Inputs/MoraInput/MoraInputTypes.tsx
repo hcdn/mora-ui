@@ -11,6 +11,8 @@ export interface OnChangeFunction {
 }
 
 export interface MoraInputProps {
+  /** Input is disabled */
+  disabled?: boolean
   /** Input is required. */
   required?: boolean
   /** Array of validation functions. */
