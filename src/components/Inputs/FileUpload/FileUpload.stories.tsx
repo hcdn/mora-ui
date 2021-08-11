@@ -25,7 +25,7 @@ export default {
 export const SingleFile = () => {
   const [inputValue, setInputValue] = useState<FileList | null>(null)
   const handleChange: OnChangeFunction = ({ value }) => {
-    setInputValue(value[0].name)
+    setInputValue(value.length ? value[0].name : null)
   }
   return (
     <>
@@ -67,6 +67,25 @@ export const MultipleFiles = () => {
           ))}
         </ul>
       </Box>
+    </>
+  )
+}
+
+export const Accept = () => {
+  const [inputValue, setInputValue] = useState<FileList | null>(null)
+  const handleChange: OnChangeFunction = ({ value }) => {
+    setInputValue(value.length ? value[0].name : null)
+  }
+  return (
+    <>
+      <FileUpload
+        mb={4}
+        label='Upload a png'
+        value={inputValue}
+        onChange={handleChange}
+        accept={['.png']}
+      />
+      <Text>Selected value: {inputValue}</Text>
     </>
   )
 }
