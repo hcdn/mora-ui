@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Box } from '../../Box/Box'
+import { Button } from '../../Button/Button'
 import { Text } from '../../Text/Text'
+import { Form, SerializedFormEvent } from '../Form'
 import { OnChangeFunction } from '../MoraInput'
 import { Checkbox } from './Checkbox'
 
@@ -68,4 +70,31 @@ export const Controlled = () => {
       <Text>Selected: TEST</Text>
     </>
   )
+}
+
+export const OnForm = () => {
+  const Component = () => {
+    const [formResult, setFormResult] = useState<string>('')
+    interface FormData {
+      options: string[]
+    }
+    const handleSubmit: SerializedFormEvent<FormData> = ({ values }) => {
+      // form event is prevented by default
+      console.log(values)
+      // debug
+      setFormResult(JSON.stringify(values))
+    }
+    return (
+      <Form serialize onSubmit={handleSubmit} hash>
+        <Box flex direction='column' space={4}>
+          <Checkbox name='options[]' value='A' label='Option A' />
+          <Checkbox name='options[]' value='B' label='Option B' />
+          <Checkbox name='options[]' value='C' label='Option C' />
+          <Button span={2} label='Submit' type='submit' />
+          <Text>Form result: {formResult}</Text>
+        </Box>
+      </Form>
+    )
+  }
+  return <Component />
 }

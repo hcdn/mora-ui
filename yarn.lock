@@ -3050,11 +3050,6 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
-"@types/form-serialize@^0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@types/form-serialize/-/form-serialize-0.7.2.tgz#6995e5541f6e1d4770c6e6bb7b226db6220984b9"
-  integrity sha512-DOHz5r47gNIcA6bsKjMV7G/Bgs3FFTQBFCHw95D0+5bANYIjazCmrOCTnGhtgIKeg0dJGhKlnT0WOkS2HdeqXQ==
-
 "@types/glob-base@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@types/glob-base/-/glob-base-0.3.0.tgz#a581d688347e10e50dd7c17d6f2880a10354319d"
@@ -7843,11 +7838,6 @@ form-data@~2.3.2:
     asynckit "^0.4.0"
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
-
-form-serialize@^0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/form-serialize/-/form-serialize-0.7.2.tgz#b0a2ff0c22026fb6d3d15c9d33f6de6a432e4732"
-  integrity sha1-sKL/DCICb7bT0VydM/beakMuRzI=
 
 format@^0.2.0:
   version "0.2.2"

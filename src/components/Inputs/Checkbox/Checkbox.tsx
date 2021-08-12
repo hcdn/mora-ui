@@ -60,13 +60,19 @@ export class Checkbox extends MoraInput<CheckboxProps, {}> {
   }
 
   render() {
-    const { value, checked, defaultChecked, name, className, label } =
+    const { value, checked, defaultChecked, name, className, label, children } =
       this.props
 
     const CheckIcon = this.getIcon()
 
     return (
-      <CheckboxContainer align='center' flex space={2} className={className}>
+      <CheckboxContainer
+        align='center'
+        flex
+        space={2}
+        p={1}
+        className={className}
+      >
         <CircleButton as='div'>{CheckIcon}</CircleButton>
         <input
           ref={this.inputRef}
@@ -78,6 +84,7 @@ export class Checkbox extends MoraInput<CheckboxProps, {}> {
           defaultChecked={defaultChecked}
         />
         {!!label && <Text cssStyles={{ userSelect: 'none' }}>{label}</Text>}
+        {children}
       </CheckboxContainer>
     )
   }

@@ -1,4 +1,4 @@
-import serialize from 'form-serialize'
+import { serialize } from '../../../utils'
 import React, { FormEvent, FunctionComponent, useState } from 'react'
 import { MoraInput } from '../MoraInput/MoraInput'
 import { FormProps } from './FormTypes'
@@ -46,8 +46,6 @@ export const Form: FunctionComponent<FormProps> = ({
       input.validateInput()
     )
     Promise.all(validations).then((values) => {
-      console.log(values)
-
       const validForm = values.every((v) => v.isValid)
       if (validForm) {
         if (props.onSubmit) {
@@ -57,7 +55,10 @@ export const Form: FunctionComponent<FormProps> = ({
               typeof props.hash === 'undefined' ? true : props.hash
             const empty: boolean =
               typeof props.empty === 'undefined' ? true : props.empty
-            const values = serialize(form, { hash, empty })
+            const values = serialize(form, {
+              hash,
+              empty
+            })
             props.onSubmit({ e, values })
           } else {
             props.onSubmit({ e })
