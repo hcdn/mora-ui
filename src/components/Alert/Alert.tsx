@@ -8,7 +8,7 @@ import { AlertProps } from './AlertTypes'
 export const Alert = styled(Box).attrs<AlertProps>(
   ({ icon, title, children, text, ...props }) => {
     const wChildren = (
-      <>
+      <React.Fragment>
         {icon && <Box className='__icon'>{icon}</Box>}
         <Box flex direction='column' space={0}>
           {title && (
@@ -23,7 +23,7 @@ export const Alert = styled(Box).attrs<AlertProps>(
           )}
           {children && <Box className='__children'>{children}</Box>}
         </Box>
-      </>
+      </React.Fragment>
     )
     return {
       space: 4,
