@@ -31,7 +31,7 @@ export const SingleFile = () => {
     <>
       <FileUpload
         mb={4}
-        label='My label'
+        label='Select a file'
         value={inputValue}
         onChange={handleChange}
       />

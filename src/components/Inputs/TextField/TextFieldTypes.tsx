@@ -1,5 +1,6 @@
 import { BoxProps } from '../../Box/BoxTypes'
 import { MoraInputProps } from '../MoraInput'
+import { CleaveOptions } from 'cleave.js/options'
 
 export interface TextFieldProps extends MoraInputProps, BoxProps {
   /** Type of text input. */
@@ -20,6 +21,8 @@ export interface TextFieldProps extends MoraInputProps, BoxProps {
   value?: string | number | null
   /** Default value of input */
   defaultValue?: string | number | null
+  /** Cleave.js format options. See https://nosir.github.io/cleave.js/ */
+  format?: CleaveOptions
 }
 
 export interface TextFieldState {

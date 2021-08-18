@@ -10,6 +10,7 @@ import {
 } from '../InputStyles/InputStyles'
 import { TextFieldProps, TextFieldState } from './TextFieldTypes'
 import { transformBoxProps } from '../../Box/Box'
+import Cleave from 'cleave.js/react'
 
 export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
   public static defaultProps = {
@@ -68,6 +69,10 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
     this.parentDidMount()
   }
 
+  focusInput = (): void => {
+    return this.inputRef?.current?.focus()
+  }
+
   render() {
     const type: TextFieldProps['type'] = this.props.type
     const autoComplete =
@@ -101,7 +106,7 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
         <InputContainer
           error={!!this.state.renderError}
           hasValue={hasValue}
-          onClick={() => this.inputRef.current?.focus()}
+          onClick={this.focusInput}
           preInputWidth={this.state.preInputWidth}
           postInputWidth={this.state.postInputWidth}
         >
@@ -119,18 +124,36 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
               {this.props.label}
             </InputLabel>
           )}
-          <input
-            name={this.props.name}
-            required={this.props.required}
-            onChange={this.onChange}
-            value={value}
-            ref={this.inputRef}
-            type={type}
-            min={this.props.min}
-            max={this.props.max}
-            autoComplete={autoComplete}
-            defaultValue={defaultValue}
-          />
+          {this.props.format ? (
+            <Cleave
+              options={this.props.format}
+              name={this.props.name}
+              required={this.props.required}
+              onChange={this.onChange}
+              value={value}
+              htmlRef={(ref) => {
+                this.inputRef = { current: ref }
+              }}
+              type={type}
+              min={this.props.min}
+              max={this.props.max}
+              autoComplete={autoComplete}
+              defaultValue={defaultValue}
+            />
+          ) : (
+            <input
+              name={this.props.name}
+              required={this.props.required}
+              onChange={this.onChange}
+              value={value}
+              ref={this.inputRef}
+              type={type}
+              min={this.props.min}
+              max={this.props.max}
+              autoComplete={autoComplete}
+              defaultValue={defaultValue}
+            />
+          )}
           {hasPostInput && (
             <ExtraInput
               ref={this.postInputRef}

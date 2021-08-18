@@ -23,13 +23,8 @@ export default {
 
 /**
  * TODO: agregar variantes de estilo de inputs, propiedad initialValue
- * Docuemntar Form
- * Hacer componentes:
- * - SelectField
- * - CheckBox (& IconButton)
  * - Radio
  * Ajustar tamaño de logo
- * Chips
  */
 export const Index = () => {
   const [inputValue, setInputValue] = useState('Input value')
@@ -66,6 +61,16 @@ export const ExtraText = () => {
       preInputText='$'
       postInputText='ARS'
       defaultValue={11}
+    />
+  )
+}
+
+export const FormatInput = () => {
+  return (
+    <TextField
+      label='Credit card'
+      format={{ creditCard: true }}
+      helperText='With Cleave.js options'
     />
   )
 }

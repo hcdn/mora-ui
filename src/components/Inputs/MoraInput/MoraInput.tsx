@@ -78,34 +78,22 @@ export abstract class MoraInput<
   }
 
   onChange = (e: any): boolean => {
-    const value = e.target.checked
+    const value = this.getValue()
     e.stopPropagation()
     e.persist()
 
-    this.validateInput()
-
-    if (typeof this.props.onChange === 'function') {
-      // execute custom onChange function
-      this.props.onChange({
-        value: value,
-        e,
-        isValid: this.state.isValid,
-        isInvalid: !this.state.isValid
-      })
-    }
-
-    // this.validateInput().then(() => {
-    //   // todo: if async validation, wait
-    //   if (typeof this.props.onChange === 'function') {
-    //     // execute custom onChange function
-    //     this.props.onChange({
-    //       value: value,
-    //       e,
-    //       isValid: this.state.isValid,
-    //       isInvalid: !this.state.isValid
-    //     })
-    //   }
-    // })
+    this.validateInput().then(() => {
+      // todo: if async validation, wait
+      if (typeof this.props.onChange === 'function') {
+        // execute custom onChange function
+        this.props.onChange({
+          value,
+          e,
+          isValid: this.state.isValid,
+          isInvalid: !this.state.isValid
+        })
+      }
+    })
     return false
   }
 

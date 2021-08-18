@@ -59,6 +59,25 @@ export class Checkbox extends MoraInput<CheckboxProps, {}> {
     return icon
   }
 
+  onChange = (e: any): boolean => {
+    const value = e.target.checked
+    e.stopPropagation()
+    e.persist()
+
+    this.validateInput()
+
+    if (typeof this.props.onChange === 'function') {
+      // execute custom onChange function
+      this.props.onChange({
+        value: value,
+        e,
+        isValid: this.state.isValid,
+        isInvalid: !this.state.isValid
+      })
+    }
+    return false
+  }
+
   render() {
     const { value, checked, defaultChecked, name, className, label, children } =
       this.props
