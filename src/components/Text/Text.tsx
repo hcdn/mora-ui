@@ -6,20 +6,20 @@ import { TextProps } from './TextTypes'
 
 // TODO: cambiar prop "component" a "as"
 export const Text = styled(Box).attrs(
-  ({ variant, component, cssStyles, ...props }: TextProps) => {
+  ({ variant, component, sx, ...props }: TextProps) => {
     const selectedVariant = textVariants[variant || 'body2']
     const ElementTag = component || selectedVariant.component
     const elementCss = {
       ...textVariants.commons,
       ...selectedVariant.css,
-      ...cssStyles
+      ...sx
     }
 
     const elementProps = {
       textColor: props.color,
       ...selectedVariant.props,
       ...props,
-      cssStyles: elementCss,
+      sx: elementCss,
       as: ElementTag
     }
     return elementProps
@@ -29,6 +29,6 @@ export const Text = styled(Box).attrs(
 `
 Text.defaultProps = {
   variant: 'body2',
-  cssStyles: {},
+  sx: {},
   p: 0
 }

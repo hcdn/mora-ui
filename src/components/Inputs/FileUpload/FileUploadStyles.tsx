@@ -21,7 +21,7 @@ const FileNamesAttrs = ({
     <>
       <Text className='selectedFileNames'>{selectedFilesNames}</Text>
       <ClickArea
-        cssStyles={{
+        sx={{
           pointerEvents: 'all',
           cursor: 'pointer',
           fontSize: '1.5rem'

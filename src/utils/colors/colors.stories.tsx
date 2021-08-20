@@ -18,7 +18,7 @@ export const rangeColor = () => {
       {rangeArray.map(([i, v]) => (
         <Box p={3} background={v} key={i} flex justify='left'>
           <Box background={rangeColors.default}>
-            <Text cssStyles={{ color: 'white' }}>
+            <Text sx={{ color: 'white' }}>
               {i}: {v}
             </Text>
           </Box>

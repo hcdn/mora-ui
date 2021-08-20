@@ -102,7 +102,7 @@ export class Checkbox extends MoraInput<CheckboxProps, {}> {
           checked={checked}
           defaultChecked={defaultChecked}
         />
-        {!!label && <Text cssStyles={{ userSelect: 'none' }}>{label}</Text>}
+        {!!label && <Text sx={{ userSelect: 'none' }}>{label}</Text>}
         {children}
       </CheckboxContainer>
     )

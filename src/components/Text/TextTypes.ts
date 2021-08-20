@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react'
-import { CssStylesInterface, TextColorNamesType } from '../../utils'
+import { SxInterface, TextColorNamesType } from '../../utils'
 import { BoxProps } from '../Box/BoxTypes'
 
 export type TypographyVariantsLevels =
@@ -38,6 +38,6 @@ export interface TextProps extends BoxProps {
   color?: TextColorNamesType
 }
 
-export interface TextStylesProps extends CssStylesInterface {
+export interface TextStylesProps extends SxInterface {
   align?: CSSProperties['textAlign']
 }

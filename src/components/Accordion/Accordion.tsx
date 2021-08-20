@@ -88,7 +88,7 @@ const AccHeader: React.FC<AccHeaderProps> = ({
     >
       {children}
       {title && (
-        <Text cssStyles={{ userSelect: 'none' }} mb={0} variant='h6'>
+        <Text sx={{ userSelect: 'none' }} mb={0} variant='h6'>
           {title}
         </Text>
       )}

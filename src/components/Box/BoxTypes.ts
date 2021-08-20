@@ -1,5 +1,6 @@
 import {
-  CssStylesInterface,
+  SxInterface,
+  InjectedCssInterface,
   MarignSpacerInterface,
   PaddingSpacerInterface,
   TextColorNamesType
@@ -20,7 +21,7 @@ export interface ContainerProps {
 export interface BoxWrapperProps
   extends MarignSpacerInterface,
     PaddingSpacerInterface,
-    CssStylesInterface,
+    SxInterface,
     UseBackgroundInterface {
   space?: number | string
   direction?: 'row' | 'column'
@@ -38,7 +39,8 @@ export interface BoxWrapperProps
 export interface BoxProps
   extends MarignSpacerInterface,
     PaddingSpacerInterface,
-    CssStylesInterface,
+    SxInterface,
+    InjectedCssInterface,
     UseBackgroundInterface {
   // Flex direction
   direction?: 'row' | 'column'
