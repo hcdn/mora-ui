@@ -18,7 +18,7 @@ const FileNamesAttrs = ({
   ...props
 }: FileNamesAttrsProps): FileNamesAttrsProps => {
   const newChildren = (
-    <>
+    <React.Fragment>
       <Text className='selectedFileNames'>{selectedFilesNames}</Text>
       <ClickArea
         sx={{
@@ -30,7 +30,7 @@ const FileNamesAttrs = ({
       >
         ×
       </ClickArea>
-    </>
+    </React.Fragment>
   )
   return {
     flex: true,
