@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components'
 import { Box } from '../Box/Box'
-import { AccordionStylesProps, StyledAccContentProps } from './AccordionTypes'
+import {
+  AccordionStylesProps,
+  StyledAccContentProps,
+  StyledAccHeaderProps
+} from './AccordionTypes'
 
 export const StyledAccordion = styled(Box)<AccordionStylesProps>`
   position: relative;
@@ -30,10 +34,20 @@ export const StyledAccordion = styled(Box)<AccordionStylesProps>`
         content: '';
       }
     `}
+    ${({ noBorderCaps }) =>
+    noBorderCaps &&
+    css`
+      &:first-child:before {
+        content: none;
+      }
+      &:last-child:after {
+        content: none;
+      }
+    `}
 `
 
-export const StyledAccHeader = styled(Box)`
-  cursor: pointer;
+export const StyledAccHeader = styled(Box)<StyledAccHeaderProps>`
+  cursor: ${({ noControl }) => (noControl ? 'default' : 'pointer')};
   position: relative;
 `
 

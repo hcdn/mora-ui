@@ -55,7 +55,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   return (
     <StyledAccordion {...props} px={px}>
       <AccHeader
-        onToggle={handleChange}
+        onToggle={noControl ? undefined : handleChange}
         expanded={accordionExpanded}
         title={title}
         headerOptions={headerOptions}
@@ -89,6 +89,7 @@ const AccHeader: React.FC<AccHeaderProps> = ({
       align='center'
       justify='space-between'
       space={4}
+      noControl={noControl}
       {...props}
     >
       {children}

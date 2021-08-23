@@ -6,6 +6,7 @@ export interface AccordionStylesProps extends BoxProps {
   noBorder?: boolean
   noBorderTop?: boolean
   noBorderBottom?: boolean
+  noBorderCaps?: boolean
 }
 
 export interface AccordionProps extends AccordionStylesProps {
@@ -18,12 +19,15 @@ export interface AccordionProps extends AccordionStylesProps {
   defaultExpanded?: boolean
 }
 
-export interface AccHeaderProps extends BoxProps {
+export interface StyledAccHeaderProps extends BoxProps {
+  noControl?: boolean
+}
+
+export interface AccHeaderProps extends StyledAccHeaderProps {
   expanded: boolean
   title?: any
-  onToggle: (e: React.SyntheticEvent) => void
+  onToggle?: (e: React.SyntheticEvent) => void
   headerOptions?: any
-  noControl?: boolean
 }
 
 export interface ExpandButtonProps extends CircleButtonProps {

@@ -86,6 +86,25 @@ export const Controlled = () => {
   )
 }
 
+export const NoBorderCaps = () => (
+  <Box flex space={4} direction='column'>
+    <Card p={0}>
+      <Accordion title='Title 1' noBorderCaps>
+        Data 1.
+      </Accordion>
+      <Accordion title='Title 2' noBorderCaps>
+        Data 2.
+      </Accordion>
+      <Accordion title='Title 3' noBorderCaps>
+        Data 3.
+      </Accordion>
+      <Accordion title='Title 4' noBorderCaps>
+        Data 4.
+      </Accordion>
+    </Card>
+  </Box>
+)
+
 export const NoBorder = () => (
   <Box flex space={4} direction='column'>
     <Card p={0}>
@@ -115,13 +134,13 @@ export const DefaultExpanded = () => (
       </Accordion>
     </Card>
     <Card px={0} py={3}>
-      <Accordion title='Title 2' noBorderTop defaultExpanded>
+      <Accordion title='Title 2' noBorderCaps defaultExpanded>
         Data 2.
       </Accordion>
-      <Accordion title='Title 3' noBorderBottom defaultExpanded>
+      <Accordion title='Title 3' noBorderCaps defaultExpanded>
         Data 3.
       </Accordion>
-      <Accordion title='Title 4' noBorderBottom defaultExpanded>
+      <Accordion title='Title 4' noBorderCaps defaultExpanded>
         Data 4.
       </Accordion>
     </Card>
