@@ -21,6 +21,7 @@ export abstract class MoraInput<
     super(props)
     const defaultState = {
       inputValue: undefined,
+      inputFocused: false,
       isValid: false,
       renderError: false,
       errorMessage: false
@@ -71,6 +72,10 @@ export abstract class MoraInput<
 
   componentWillUnmount = () => {
     this.parentWillUnmount()
+  }
+
+  setFocus = (focused: boolean): void => {
+    this.setState((prevState) => ({ ...prevState, inputFocused: focused }))
   }
 
   silentValidate = () => {

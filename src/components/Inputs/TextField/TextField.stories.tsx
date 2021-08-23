@@ -37,6 +37,7 @@ export const Index = () => {
       value={inputValue}
       onChange={handleChange}
       helperText='Helper text'
+      placeholder='Placeholder text'
     />
   )
 }
@@ -60,6 +61,7 @@ export const ExtraText = () => {
       type='number'
       preInputText='$'
       postInputText='ARS'
+      placeholder='00'
       defaultValue={11}
     />
   )

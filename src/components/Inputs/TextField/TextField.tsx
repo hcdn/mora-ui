@@ -102,6 +102,9 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
         ? this.props.placeholder
         : `${this.props.placeholder}`
 
+    const showPlaceholder: boolean =
+      hasValue || this.state.inputFocused || !this.props.label
+
     return (
       <InputRoot
         style={this.props.style}
@@ -144,7 +147,9 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
               max={this.props.max}
               autoComplete={autoComplete}
               defaultValue={defaultValue}
-              placeholder={placeholder}
+              placeholder={showPlaceholder ? placeholder : undefined}
+              onFocus={() => this.setFocus(true)}
+              onBlur={() => this.setFocus(false)}
             />
           ) : (
             <input
@@ -158,7 +163,9 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
               max={this.props.max}
               autoComplete={autoComplete}
               defaultValue={defaultValue}
-              placeholder={placeholder}
+              placeholder={showPlaceholder ? placeholder : undefined}
+              onFocus={() => this.setFocus(true)}
+              onBlur={() => this.setFocus(false)}
             />
           )}
           {hasPostInput && (

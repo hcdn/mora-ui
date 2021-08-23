@@ -36,6 +36,7 @@ export interface MoraInputProps {
 
 export type MoraInputState<T> = T & {
   inputValue: any
+  inputFocused: boolean
   isValid: boolean
   renderError: boolean
   errorMessage: string | boolean
