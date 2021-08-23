@@ -24,11 +24,14 @@ export const Accordion: React.FC<AccordionProps> = ({
   title,
   px = 4,
   headerOptions,
+  noControl,
+  defaultExpanded,
   ...props
 }) => {
+  const startExpanded = defaultExpanded || false
   const controlled = typeof expanded !== 'undefined'
   const [isExpanded, setIsExpanded] = useState<boolean>(
-    typeof expanded !== 'undefined' ? expanded : false
+    typeof expanded !== 'undefined' ? expanded : startExpanded
   )
 
   const handleChange = (e: React.SyntheticEvent) => {
@@ -57,6 +60,7 @@ export const Accordion: React.FC<AccordionProps> = ({
         title={title}
         headerOptions={headerOptions}
         py={2}
+        noControl={noControl}
       />
       <AccContent expanded={accordionExpanded}>{componentChildren}</AccContent>
     </StyledAccordion>
@@ -74,6 +78,7 @@ const AccHeader: React.FC<AccHeaderProps> = ({
   onToggle,
   headerOptions,
   children,
+  noControl,
   ...props
 }) => {
   const hasHeaderOptions = typeof headerOptions !== 'undefined'
@@ -92,9 +97,11 @@ const AccHeader: React.FC<AccHeaderProps> = ({
           {title}
         </Text>
       )}
-      <Box flex align='center'>
-        <ExpandButton expanded={expanded}>ᐯ</ExpandButton>
-      </Box>
+      {!noControl && (
+        <Box flex align='center'>
+          <ExpandButton expanded={expanded}>ᐯ</ExpandButton>
+        </Box>
+      )}
     </StyledAccHeader>
   )
 }

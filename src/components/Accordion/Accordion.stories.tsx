@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Box } from '../Box/Box'
+import { Card } from '../Card/Card'
 import { Text } from '../Text/Text'
 import { Accordion } from './Accordion'
 
@@ -26,7 +27,7 @@ export default {
   },
   decorators: [
     (Story: any) => (
-      <Box flex container p={4}>
+      <Box flex container p={4} direction='column'>
         <Story />
       </Box>
     )
@@ -84,3 +85,45 @@ export const Controlled = () => {
     </>
   )
 }
+
+export const NoBorder = () => (
+  <Box flex space={4} direction='column'>
+    <Card p={0}>
+      <Accordion title='Title' noBorder>
+        Data.
+      </Accordion>
+    </Card>
+    <Card p={0}>
+      <Accordion title='Title 2' noBorderTop>
+        Data 2.
+      </Accordion>
+      <Accordion title='Title 3' noBorderBottom>
+        Data 3.
+      </Accordion>
+      <Accordion title='Title 4' noBorderBottom>
+        Data 4.
+      </Accordion>
+    </Card>
+  </Box>
+)
+
+export const DefaultExpanded = () => (
+  <Box flex space={4} direction='column'>
+    <Card px={0} py={3}>
+      <Accordion title='Title' noBorder noControl defaultExpanded>
+        Data.
+      </Accordion>
+    </Card>
+    <Card px={0} py={3}>
+      <Accordion title='Title 2' noBorderTop defaultExpanded>
+        Data 2.
+      </Accordion>
+      <Accordion title='Title 3' noBorderBottom defaultExpanded>
+        Data 3.
+      </Accordion>
+      <Accordion title='Title 4' noBorderBottom defaultExpanded>
+        Data 4.
+      </Accordion>
+    </Card>
+  </Box>
+)
