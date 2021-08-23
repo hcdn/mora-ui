@@ -97,6 +97,11 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
     /** Implement Box */
     const boxProps = transformBoxProps(this.props)
 
+    const placeholder =
+      typeof this.props.placeholder === 'undefined'
+        ? this.props.placeholder
+        : `${this.props.placeholder}`
+
     return (
       <InputRoot
         style={this.props.style}
@@ -139,6 +144,7 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
               max={this.props.max}
               autoComplete={autoComplete}
               defaultValue={defaultValue}
+              placeholder={placeholder}
             />
           ) : (
             <input
@@ -152,6 +158,7 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
               max={this.props.max}
               autoComplete={autoComplete}
               defaultValue={defaultValue}
+              placeholder={placeholder}
             />
           )}
           {hasPostInput && (
