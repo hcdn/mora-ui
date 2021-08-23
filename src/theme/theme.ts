@@ -25,7 +25,7 @@ export const defaultLightTheme: ThemeType = {
   font: defaultFont,
   layout: {
     colCount: 12,
-    colGap: 4
+    colGap: 6
   }
 }
 
