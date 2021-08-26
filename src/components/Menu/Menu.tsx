@@ -16,13 +16,13 @@ const MenuAttrs = ({
   ...props
 }: MenuAttrsProps): MenuAttrsProps => {
   const wChildren = (
-    <>
+    <React.Fragment>
       <Hidder>
         {icon && <Icon>{icon}</Icon>}
         <Text pl={2}>{label}</Text>
       </Hidder>
       {subMenu && selected && <SubMenu>{subMenu}</SubMenu>}
-    </>
+    </React.Fragment>
   )
   return {
     children: wChildren,

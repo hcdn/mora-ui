@@ -6,7 +6,7 @@ import { CircleButtonStyles } from './CircleButtonStyles'
 import {
   CircleButtonProps,
   CircleButtonWrapperProps
-} from './CircleButtonTypesd'
+} from './CircleButtonTypes'
 
 type CircleButtonPropsType = React.Component<CircleButtonProps>['props']
 type CircleButtonPropsWrapperType =

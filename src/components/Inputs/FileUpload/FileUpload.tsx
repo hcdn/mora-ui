@@ -22,9 +22,15 @@ export class FileUpload extends MoraInput<FileUploadProps, {}> {
 
   inputRef: React.RefObject<HTMLInputElement>
 
-  validate = (value: any): ValidationResult => {
+  validate = (value: FileList | null): ValidationResult => {
     if (this.props.required) {
-      return !!value
+      if (value === null) {
+        return false
+      }
+      if (Array.from(value).length === 0) {
+        return false
+      }
+      return true
     } else {
       return true
     }

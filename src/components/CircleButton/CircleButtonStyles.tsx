@@ -1,6 +1,6 @@
 import { css, DefaultTheme, ThemedStyledProps } from 'styled-components'
 import { getSize } from '../../utils'
-import { CircleButtonWrapperProps } from './CircleButtonTypesd'
+import { CircleButtonWrapperProps } from './CircleButtonTypes'
 
 const getButtonFontSize = ({
   size,

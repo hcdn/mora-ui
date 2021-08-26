@@ -1,6 +1,6 @@
 import React from 'react'
 import { BoxProps } from '../Box/BoxTypes'
-import { CircleButtonProps } from '../CircleButton/CircleButtonTypesd'
+import { CircleButtonProps } from '../CircleButton/CircleButtonTypes'
 
 export interface AccordionStylesProps extends BoxProps {
   noBorder?: boolean
