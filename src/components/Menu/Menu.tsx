@@ -19,7 +19,7 @@ const MenuAttrs = ({
     <React.Fragment>
       <Hidder>
         {icon && <Icon>{icon}</Icon>}
-        <Text pl={2}>{label}</Text>
+        <Text>{label}</Text>
       </Hidder>
       {subMenu && selected && <SubMenu>{subMenu}</SubMenu>}
     </React.Fragment>

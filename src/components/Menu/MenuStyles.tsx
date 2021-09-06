@@ -9,7 +9,7 @@ import { Box } from '../Box/Box'
 import { MenuItemProps } from './MenuTypes'
 
 export const Icon = styled.span`
-  min-width: ${cssGetSize(12)};
+  min-width: ${cssGetSize(10)};
   display: flex;
   align-items: center;
   justify-content: center;
