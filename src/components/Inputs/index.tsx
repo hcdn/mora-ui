@@ -1,3 +1,4 @@
+export * from './Autocomplete'
 export * from './MoraInput'
 export * from './Form'
 export * from './TextField'

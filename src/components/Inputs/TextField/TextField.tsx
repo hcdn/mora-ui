@@ -166,6 +166,7 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
               placeholder={showPlaceholder ? placeholder : undefined}
               onFocus={() => this.setFocus(true)}
               onBlur={() => this.setFocus(false)}
+              {...(this.props.inputProps || {})}
             />
           )}
           {hasPostInput && (

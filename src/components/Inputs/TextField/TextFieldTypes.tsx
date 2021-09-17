@@ -23,6 +23,7 @@ export interface TextFieldProps extends MoraInputProps, BoxProps {
   defaultValue?: string | number | null
   /** Cleave.js format options. See https://nosir.github.io/cleave.js/ */
   format?: CleaveOptions
+  inputProps?: object
 }
 
 export interface TextFieldState {
