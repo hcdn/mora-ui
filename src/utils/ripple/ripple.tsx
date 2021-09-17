@@ -19,6 +19,19 @@ export const useRipple = (
   const [effectPos, setEffectPos] = useState<
     { top: number | string; left: number | string; key: string } | false
   >(false)
+  const expireKey = (key: string) => {
+    setTimeout(() => {
+      setEffectPos((currentEffectPos) => {
+        if (currentEffectPos && currentEffectPos.key === key) {
+          return false
+        } else {
+          return currentEffectPos
+        }
+      })
+    }, 200)
+  }
+  const getRandomId = (): string =>
+    Math.round(Math.random() * 100 + 1).toString()
   /**
    * Create a ripple from a click event.
    */
@@ -26,8 +39,9 @@ export const useRipple = (
     const positions = containerRef.current.getBoundingClientRect()
     const left = e.clientX - positions.left
     const top = e.clientY - positions.top
-    const key = Math.random().toString()
+    const key = getRandomId()
     setEffectPos({ top, left, key })
+    expireKey(key)
   }
   /**
    * Create a ripple from a x=0-100% y=0-100% position.
@@ -38,9 +52,11 @@ export const useRipple = (
   ) => {
     const left = `${x}%`
     const top = `${y}%`
-    const key = Math.random().toString()
+    const key = getRandomId()
     setEffectPos({ top, left, key })
+    expireKey(key)
   }
+
   /**
    * Component controlled by hook, renders the ripple.
    */
