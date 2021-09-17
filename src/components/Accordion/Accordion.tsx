@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 
 import { Box } from '../Box/Box'
 import { CircleButton } from '../CircleButton/CircleButton'
@@ -12,8 +11,7 @@ import {
 import {
   AccContentProps,
   AccHeaderProps,
-  AccordionProps,
-  ExpandButtonProps
+  AccordionProps
 } from './AccordionTypes'
 
 export const Accordion: React.FC<AccordionProps> = ({
@@ -67,11 +65,6 @@ export const Accordion: React.FC<AccordionProps> = ({
   )
 }
 
-const ExpandButton = styled(CircleButton)<ExpandButtonProps>`
-  transform: rotate(${({ expanded }) => (expanded ? 180 : 0)}deg);
-  transition: transform 0.2s ease;
-`
-
 const AccHeader: React.FC<AccHeaderProps> = ({
   title,
   expanded,
@@ -100,7 +93,16 @@ const AccHeader: React.FC<AccHeaderProps> = ({
       )}
       {!noControl && (
         <Box flex align='center'>
-          <ExpandButton expanded={expanded}>ᐯ</ExpandButton>
+          <CircleButton>
+            <Box
+              sx={{
+                transform: `rotate(${expanded ? 180 : 0}deg)`,
+                transition: 'transform 0.2s ease'
+              }}
+            >
+              ▼
+            </Box>
+          </CircleButton>
         </Box>
       )}
     </StyledAccHeader>

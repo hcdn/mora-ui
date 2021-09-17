@@ -1,6 +1,5 @@
 import React from 'react'
 import { BoxProps } from '../Box/BoxTypes'
-import { CircleButtonProps } from '../CircleButton/CircleButtonTypes'
 
 export interface AccordionStylesProps extends BoxProps {
   noBorder?: boolean
@@ -28,10 +27,6 @@ export interface AccHeaderProps extends StyledAccHeaderProps {
   title?: any
   onToggle?: (e: React.SyntheticEvent) => void
   headerOptions?: any
-}
-
-export interface ExpandButtonProps extends CircleButtonProps {
-  expanded: boolean
 }
 
 export interface AccContentProps extends BoxProps {
