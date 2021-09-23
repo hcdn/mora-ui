@@ -3,6 +3,10 @@ import { cssGetMainColor } from '../../../utils'
 import { cssBox } from '../../Box/Box'
 import { BoxWrapperProps } from '../../Box/BoxTypes'
 import { Text } from '../../Text/Text'
+import { Box, BoxProps } from '../..'
+
+import React, { FC, useContext } from 'react'
+import { CompositeContext } from '../CompositeField'
 
 // General input vars
 const transitionCurve = '200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
@@ -93,25 +97,68 @@ export const ExtraInput = styled.div<ExtraInputInterface>`
 	`}
 `
 
-export interface InputContainerProps {
+export interface InputContainerProps extends BoxProps {
   hasValue: boolean
   error: boolean
   preInputWidth?: number
   postInputWidth?: number
   type?: 'select' | 'file'
+  isComposite?: boolean
+  isCompositeChild?: boolean
 }
 
-export const InputContainer = styled.div<InputContainerProps>`
+export const InputContainer: FC<InputContainerProps> = ({
+  children,
+  ...props
+}) => {
+  const IsCompositeChild = useContext(CompositeContext)
+  console.log(props)
+
+  return (
+    <InputContainerStyle {...props} isCompositeChild={IsCompositeChild}>
+      {children}
+    </InputContainerStyle>
+  )
+}
+
+export const InputContainerStyle = styled(Box)<InputContainerProps>`
   position: relative;
-  background-color: ${({ theme }) => theme.palette.background.secondary.main};
   color: ${({ theme }) => theme.palette.background.secondary.contrastText};
-  box-shadow: 0 0 0 1px
-    ${({ theme }) => theme.palette.background.secondary.dark};
   transition: background-color ${transitionCurve}, box-shadow ${transitionCurve};
-  border-radius: 0.5rem;
+
+  ${({ isCompositeChild }) =>
+    !isCompositeChild &&
+    css`
+      // Is a parent container
+      box-shadow: 0 0 0 1px
+        ${({ theme }) => theme.palette.background.secondary.dark};
+      background-color: ${({ theme }) =>
+        theme.palette.background.secondary.main};
+      border-radius: 0.5rem;
+    `}
+  &:focus-within {
+    ${({ isCompositeChild }) =>
+      !isCompositeChild &&
+      css`
+        box-shadow: 0 0 0 0.1rem ${cssGetMainColor('primary')};
+      `}
+    ${({ isComposite }) =>
+      isComposite
+        ? css``
+        : css`
+            ${InputLabel} {
+              color: ${cssGetMainColor('primary')};
+              transform: translate(${spaceLeft}rem, 0.4rem) scale(0.75);
+            }
+            ${ExtraInput} {
+              visibility: visible;
+            }
+          `}
+  }
+
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  /* align-items: flex-end; */
   ${ExtraInput} {
     padding-bottom: ${spaceBottom}rem;
   }
@@ -184,16 +231,6 @@ export const InputContainer = styled.div<InputContainerProps>`
     left: 0;
     ${({ hasValue }) =>
       hasValue && `transform: translate(${spaceLeft}rem, 0.4rem) scale(0.75);`}
-  }
-  &:focus-within {
-    box-shadow: 0 0 0 0.1rem ${cssGetMainColor('primary')};
-    ${InputLabel} {
-      color: ${cssGetMainColor('primary')};
-      transform: translate(${spaceLeft}rem, 0.4rem) scale(0.75);
-    }
-    ${ExtraInput} {
-      visibility: visible;
-    }
   }
   ${({ error }) =>
     /* Error state */

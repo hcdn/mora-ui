@@ -6,6 +6,7 @@ import styled, { css } from 'styled-components'
 import { AutocompleteProps, SelectMenuItemProps } from './AutocompleteTypes'
 import { AutocompleteOption } from '.'
 import { cssGetSize } from '../../..'
+import { CompositeField } from '../CompositeField'
 
 export const SelectMenu = styled(Box).attrs({ as: 'ul' })`
   padding: 0;
@@ -38,6 +39,7 @@ export const SelectMenuItem = styled(Box).attrs({
 
 const SelectionContainerCss = css`
   position: relative;
+  overflow: visible !important;
 `
 
 const itemToString = (option: AutocompleteOption | null): string =>
@@ -50,7 +52,15 @@ export const Autocomplete: FC<AutocompleteProps> = ({
   initialInputValue,
   initialIsOpen,
   initialSelectedItem,
-  ...textFieldProps
+  /** TextField props */
+  preInputText,
+  postInputText,
+  defaultValue,
+  format,
+  value: inputValue,
+  inputProps,
+  label,
+  ...boxProps
 }) => {
   return (
     <Downshift
@@ -60,6 +70,7 @@ export const Autocomplete: FC<AutocompleteProps> = ({
       initialInputValue={initialInputValue}
       initialIsOpen={initialIsOpen}
       initialSelectedItem={initialSelectedItem}
+      inputValue={typeof inputValue === 'number' ? '' + inputValue : inputValue}
     >
       {({
         inputValue,
@@ -74,76 +85,84 @@ export const Autocomplete: FC<AutocompleteProps> = ({
         getRootProps,
         openMenu
       }) => (
-        <Box
-          {...getRootProps(undefined, { suppressRefError: true })}
-          flex
-          noWrap
-          space={2}
-          align='center'
-          css={SelectionContainerCss}
-        >
-          <TextField
-            value={inputValue}
-            {...textFieldProps}
-            inputProps={{ ...getInputProps(), onFocus: () => openMenu() }}
-          />
-          {selectedItem ? (
-            <CircleButton
-              color='error'
-              sx={{
-                fontSize: '1.5rem !important'
+        <CompositeField css={SelectionContainerCss} {...boxProps}>
+          <Box
+            flex
+            noWrap
+            align='center'
+            {...getRootProps(undefined, { suppressRefError: true })}
+          >
+            <TextField
+              value={inputValue}
+              preInputText={preInputText}
+              postInputText={postInputText}
+              defaultValue={defaultValue}
+              format={format}
+              label={label}
+              inputProps={{
+                ...getInputProps(),
+                ...inputProps,
+                onFocus: () => openMenu()
               }}
-              onClick={clearSelection}
-              aria-label='clear selection'
-            >
-              ×
-            </CircleButton>
-          ) : (
-            <CircleButton {...getToggleButtonProps()}>
-              <Box
+            />
+            {selectedItem ? (
+              <CircleButton
+                color='error'
                 sx={{
-                  transform: isOpen ? 'rotate(180deg)' : '',
-                  transition: 'transform .2s ease'
+                  fontSize: '1.5rem !important'
                 }}
+                onClick={clearSelection}
+                aria-label='clear selection'
               >
-                ▼
-              </Box>
-            </CircleButton>
-          )}
-          {isOpen && (
-            <SelectMenu {...getMenuProps({ open: isOpen })}>
-              {(() => {
-                const filteredOptions = options.filter(
-                  ({ value, label }) =>
-                    inputValue === null ||
-                    value.toLowerCase().includes(inputValue.toLowerCase()) ||
-                    label.includes(inputValue.toLowerCase())
-                )
-
-                if (filteredOptions.length === 0) {
-                  if (!inputValue) {
-                    return <SelectMenuItem disabled>Buscar</SelectMenuItem>
-                  }
-                  return (
-                    <SelectMenuItem disabled>Sin resultados</SelectMenuItem>
+                ×
+              </CircleButton>
+            ) : (
+              <CircleButton {...getToggleButtonProps()}>
+                <Box
+                  sx={{
+                    transform: isOpen ? 'rotate(180deg)' : '',
+                    transition: 'transform .2s ease'
+                  }}
+                >
+                  ▼
+                </Box>
+              </CircleButton>
+            )}
+            {isOpen && (
+              <SelectMenu {...getMenuProps({ open: isOpen })}>
+                {(() => {
+                  const filteredOptions = options.filter(
+                    ({ value, label }) =>
+                      inputValue === null ||
+                      value.toLowerCase().includes(inputValue.toLowerCase()) ||
+                      label.includes(inputValue.toLowerCase())
                   )
-                }
-                return filteredOptions.map((item, index) => (
-                  <SelectMenuItem
-                    highlighted={highlightedIndex === index}
-                    key={item.value}
-                    {...getItemProps({
-                      item,
-                      index
-                    })}
-                  >
-                    {item.label}
-                  </SelectMenuItem>
-                ))
-              })()}
-            </SelectMenu>
-          )}
-        </Box>
+
+                  if (filteredOptions.length === 0) {
+                    if (!inputValue) {
+                      return <SelectMenuItem disabled>Buscar</SelectMenuItem>
+                    }
+                    return (
+                      <SelectMenuItem disabled>Sin resultados</SelectMenuItem>
+                    )
+                  }
+                  return filteredOptions.map((item, index) => (
+                    <SelectMenuItem
+                      highlighted={highlightedIndex === index}
+                      key={item.value}
+                      {...getItemProps({
+                        item,
+                        index
+                      })}
+                    >
+                      {item.label}
+                    </SelectMenuItem>
+                  ))
+                })()}
+              </SelectMenu>
+            )}
+          </Box>
+        </CompositeField>
       )}
     </Downshift>
   )
