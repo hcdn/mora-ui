@@ -105,6 +105,7 @@ export interface InputContainerProps extends BoxProps {
   type?: 'select' | 'file'
   isComposite?: boolean
   isCompositeChild?: boolean
+  onClick?: any
 }
 
 export const InputContainer: FC<InputContainerProps> = ({
