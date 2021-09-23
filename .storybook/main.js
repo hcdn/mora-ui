@@ -10,5 +10,8 @@ module.exports = {
     "@storybook/preset-create-react-app",
     "storybook-addon-designs",
     "@react-theming/storybook-addon"
-  ]
+  ],
+  "typescript": {
+    check: false,
+  }
 }

@@ -5,6 +5,11 @@ import { ThemeProvider } from 'styled-components';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
+  options: {
+    storySort: {
+      order: ['Introduction', 'Components', 'Utils', '*', 'Advanced']
+    }
+  },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -32,7 +37,6 @@ const withGlobalTheme = (Story, context) => {
 }
 
 export const decorators = [withGlobalTheme, withThemesDecorator]
-
 
 // TODO: agregar temas aca y traducir documentacion
 export const globalTypes = {

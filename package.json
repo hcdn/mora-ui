@@ -1,6 +1,6 @@
 {
   "name": "mora-ui",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "mora-ui es una librería de React para desarrollar sistemas de la Honorable Cámara de Diputados de la Nación.",
   "author": "Secretaría General de la Presidencia - Honorable Cámara de Diputados de la Nación",
   "license": "MIT",
@@ -21,9 +21,9 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "chromatic": "npx chromatic"
   },
   "peerDependencies": {
     "react": "^16.0.0",
@@ -51,6 +51,7 @@
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.7",
     "@types/styled-components": "^5.1.11",
+    "@types/testing-library__dom": "^7.5.0",
     "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
@@ -77,6 +78,9 @@
     "storybook-addon-designs": "^6.0.1",
     "styled-components": "^5.3.0",
     "typescript": "^3.7.5"
+  },
+  "resolutions": {
+    "@types/react": "^16.9.27"
   },
   "eslintConfig": {
     "extends": [
