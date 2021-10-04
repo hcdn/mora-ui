@@ -77,7 +77,7 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
     const type: TextFieldProps['type'] = this.props.type
     const autoComplete =
       typeof this.props.autoComplete === 'undefined'
-        ? undefined
+        ? 'off'
         : this.props.autoComplete
         ? 'on'
         : 'off'

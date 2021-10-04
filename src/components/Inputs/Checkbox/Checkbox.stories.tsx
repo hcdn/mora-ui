@@ -42,9 +42,6 @@ export const Controlled = () => {
     C: false
   })
   const handleChange: OnChangeFunction = ({ e }) => {
-    console.log(e.target.name)
-    console.log(e.target.checked)
-
     setChecked({ ...checked, [e.target.name]: e.target.checked })
   }
   return (

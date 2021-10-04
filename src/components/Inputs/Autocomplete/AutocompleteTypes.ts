@@ -29,4 +29,5 @@ export interface AutocompleteProps extends Partial<BoxProps> {
   format?: TextFieldProps['format']
   inputProps?: TextFieldProps['inputProps']
   required?: TextFieldProps['required']
+  name?: TextFieldProps['name']
 }

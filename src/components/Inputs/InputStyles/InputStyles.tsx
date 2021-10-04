@@ -113,8 +113,6 @@ export const InputContainer: FC<InputContainerProps> = ({
   ...props
 }) => {
   const IsCompositeChild = useContext(CompositeContext)
-  console.log(props)
-
   return (
     <InputContainerStyle {...props} isCompositeChild={IsCompositeChild}>
       {children}

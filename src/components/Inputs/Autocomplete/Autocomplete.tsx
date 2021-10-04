@@ -60,6 +60,7 @@ export const Autocomplete: FC<AutocompleteProps> = ({
   value: inputValue,
   inputProps,
   label,
+  name,
   ...boxProps
 }) => {
   return (
@@ -90,6 +91,7 @@ export const Autocomplete: FC<AutocompleteProps> = ({
             flex
             noWrap
             align='center'
+            sx={{ width: '100%' }}
             {...getRootProps(undefined, { suppressRefError: true })}
           >
             <TextField
@@ -99,6 +101,7 @@ export const Autocomplete: FC<AutocompleteProps> = ({
               defaultValue={defaultValue}
               format={format}
               label={label}
+              name={name}
               inputProps={{
                 ...getInputProps(),
                 ...inputProps,
