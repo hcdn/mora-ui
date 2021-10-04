@@ -1,8 +1,8 @@
 import React from 'react'
-import { createRangeColor } from '../../theme/colors/colors'
 import { usePalette } from './usePalette'
 import { Text } from '../../components/Text/Text'
 import { Box, Card } from '../../components'
+import { createRangeColor } from '.'
 
 export default {
   title: 'Utils/Colors'

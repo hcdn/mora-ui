@@ -1,5 +1,5 @@
-import { createMainColor, createRangeColor } from '../colors/colors'
-import { TextColorsType } from '../colors/colorsTypes'
+import { createMainColor, createRangeColor } from '../../utils/colors/colors'
+import { TextColorsType } from '../../utils/colors/colorsTypes'
 import { PaletteType } from './paletteTypes'
 
 const defaultLightText: TextColorsType = {
@@ -46,7 +46,7 @@ const defaultMainColors = {
     main: defaultColors.orange.default,
     contrastText: defaultLightText.primary
   }),
-  info: createMainColor({ main: '#0288d1' }, defaultLightText, defaultDarkText)
+  info: createMainColor({ main: '#666666' }, defaultLightText, defaultDarkText)
 }
 
 const defaultLightThemeBackground = {

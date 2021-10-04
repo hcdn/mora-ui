@@ -1,5 +1,5 @@
 import { css, DefaultTheme } from 'styled-components'
-import { MainColorVariantType } from '../../theme/colors/colorsTypes'
+import { MainColorVariantType } from './colorsTypes'
 import { MainColorNameType } from './colors'
 
 export type BackgroundType =

@@ -5,7 +5,7 @@ import {
   MainColorType,
   StepColorType,
   TextColorsType
-} from '../colors/colorsTypes'
+} from '../../utils/colors/colorsTypes'
 
 // Complete default palette
 export interface PaletteType {

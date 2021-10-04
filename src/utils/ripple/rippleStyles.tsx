@@ -6,8 +6,6 @@ const clickEffectAnimation = (opacity: number = 0.3) => keyframes`
 		opacity: ${opacity};
 		width: 50%;
 	}
-	70% {
-  }
 	100% {
     opacity: 0;
 		width: 100%;
