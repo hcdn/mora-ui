@@ -71,26 +71,33 @@ export const Styling = () => {
 }
 
 export const HeaderFooter = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  const toggleIsOpen = () => setIsOpen(!isOpen)
+  Modal.setAppElement('#root')
   return (
-    <Modal
-      isOpen
-      title='Modal title'
-      closeButton
-      containerSize='l'
-      options={
-        <>
-          <Button variant='text' color='info'>
-            Cancel
-          </Button>
-          <Button variant='text' color='primary'>
-            Submit
-          </Button>
-        </>
-      }
-    >
-      <Box p={6} flex justify='center'>
-        Modal Content
-      </Box>
-    </Modal>
+    <div>
+      <Button onClick={toggleIsOpen}>Edit</Button>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={toggleIsOpen}
+        title='Modal title'
+        closeButton
+        containerSize='l'
+        options={
+          <>
+            <Button variant='text' color='info'>
+              Cancel
+            </Button>
+            <Button variant='text' color='primary'>
+              Submit
+            </Button>
+          </>
+        }
+      >
+        <Box p={6} flex justify='center'>
+          Modal Content
+        </Box>
+      </Modal>
+    </div>
   )
 }
