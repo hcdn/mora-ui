@@ -4,7 +4,7 @@ import { CleaveOptions } from 'cleave.js/options'
 
 export interface TextFieldProps extends MoraInputProps, BoxProps {
   /** Type of text input. */
-  type: 'text' | 'number' | 'email' | 'password'
+  type: 'text' | 'number' | 'email' | 'password' | 'date'
   /** Minimum amount of characters in string. */
   minLength?: number
   /** Maximum amount of characters in string. */

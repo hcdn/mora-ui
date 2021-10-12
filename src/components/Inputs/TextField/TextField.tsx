@@ -91,8 +91,7 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
     const defaultValue =
       this.props.defaultValue === null ? '' : this.props.defaultValue
 
-    const hasValue =
-      !!(this.props.value ?? !!this.state.inputValue) || !!defaultValue
+    const hasValue = !!(this.props.value ?? !!this.state.inputValue)
 
     /** Implement Box */
     const boxProps = transformBoxProps(this.props)
@@ -150,6 +149,7 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
               placeholder={showPlaceholder ? placeholder : undefined}
               onFocus={() => this.setFocus(true)}
               onBlur={() => this.setFocus(false)}
+              disabled={this.props.disabled}
             />
           ) : (
             <input
@@ -166,6 +166,7 @@ export class TextField extends MoraInput<TextFieldProps, TextFieldState> {
               placeholder={showPlaceholder ? placeholder : undefined}
               onFocus={() => this.setFocus(true)}
               onBlur={() => this.setFocus(false)}
+              disabled={this.props.disabled}
               {...(this.props.inputProps || {})}
             />
           )}

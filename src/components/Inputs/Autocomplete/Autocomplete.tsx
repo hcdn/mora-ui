@@ -61,6 +61,7 @@ export const Autocomplete: FC<AutocompleteProps> = ({
   inputProps,
   label,
   name,
+  required,
   ...boxProps
 }) => {
   return (
@@ -102,6 +103,7 @@ export const Autocomplete: FC<AutocompleteProps> = ({
               format={format}
               label={label}
               name={name}
+              required={required}
               inputProps={{
                 ...getInputProps(),
                 ...inputProps,
@@ -135,10 +137,11 @@ export const Autocomplete: FC<AutocompleteProps> = ({
               <SelectMenu {...getMenuProps({ open: isOpen })}>
                 {(() => {
                   const filteredOptions = options.filter(
-                    ({ value, label }) =>
+                    ({ label }) =>
                       inputValue === null ||
-                      value.toLowerCase().includes(inputValue.toLowerCase()) ||
-                      label.includes(inputValue.toLowerCase())
+                      `${label}`
+                        .toLowerCase()
+                        .includes(`${inputValue}`.toLowerCase())
                   )
 
                   if (filteredOptions.length === 0) {

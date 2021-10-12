@@ -7,6 +7,7 @@ import { Box, BoxProps } from '../..'
 
 import React, { FC, useContext } from 'react'
 import { CompositeContext } from '../CompositeField'
+import { TextFieldProps } from '..'
 
 // General input vars
 const transitionCurve = '200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
@@ -102,7 +103,7 @@ export interface InputContainerProps extends BoxProps {
   error: boolean
   preInputWidth?: number
   postInputWidth?: number
-  type?: 'select' | 'file'
+  type?: 'select' | 'file' | TextFieldProps['type']
   isComposite?: boolean
   isCompositeChild?: boolean
   onClick?: any
@@ -228,8 +229,9 @@ export const InputContainerStyle = styled(Box)<InputContainerProps>`
     z-index: 10;
     top: 0;
     left: 0;
-    ${({ hasValue }) =>
-      hasValue && `transform: translate(${spaceLeft}rem, 0.4rem) scale(0.75);`}
+    ${({ hasValue, type }) =>
+      (hasValue || type === 'date') &&
+      `transform: translate(${spaceLeft}rem, 0.4rem) scale(0.75);`}
   }
   ${({ error }) =>
     /* Error state */

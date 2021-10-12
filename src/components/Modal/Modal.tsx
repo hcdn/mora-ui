@@ -48,6 +48,7 @@ const ModalOverlayContainer = styled(Box)`
   background-color: ${({ theme }) =>
     chroma(theme.palette.background.primary.main).alpha(0.6).css()};
   backdrop-filter: blur(5px);
+  z-index: 10000;
 `
 
 const cssModalCloseButton = css`
