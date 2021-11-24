@@ -130,7 +130,7 @@ export const InputContainerStyle = styled(Box)<InputContainerProps>`
     !isCompositeChild &&
     css`
       // Is a parent container
-      box-shadow: 0 0 0 1px
+      box-shadow: inset 0 0 0 1px
         ${({ theme }) => theme.palette.background.secondary.dark};
       background-color: ${({ theme }) =>
         theme.palette.background.secondary.main};
@@ -140,7 +140,7 @@ export const InputContainerStyle = styled(Box)<InputContainerProps>`
     ${({ isCompositeChild }) =>
       !isCompositeChild &&
       css`
-        box-shadow: 0 0 0 0.1rem ${cssGetMainColor('primary')};
+        box-shadow: inset 0 0 0 0.1rem ${cssGetMainColor('primary')};
       `}
     ${({ isComposite }) =>
       isComposite
@@ -245,8 +245,8 @@ export const InputContainerStyle = styled(Box)<InputContainerProps>`
         &:-webkit-autofill:hover,
         &:-webkit-autofill:focus,
         &:-webkit-autofill:active {
-          -webkit-box-shadow: 0 0 0 30rem ${cssGetMainColor('error', 'main')}
-            inset !important;
+          -webkit-box-shadow: inset 0 0 0 30rem
+            ${cssGetMainColor('error', 'main')} inset !important;
         }
       }
       ${InputLabel} {
