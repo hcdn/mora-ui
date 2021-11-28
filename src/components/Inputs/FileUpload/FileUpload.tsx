@@ -97,6 +97,7 @@ export class FileUpload extends MoraInput<FileUploadProps, {}> {
               ref={this.inputRef}
               multiple={this.props.multiple}
               accept={accept}
+              name={this.props.name}
             />
           </label>
           {hasValue && (

@@ -7,10 +7,10 @@
 
 // types which indicate a submit action and are not successful controls
 // these will be ignored
-var kRSubmitter = /^(?:submit|button|image|reset|file)$/i
+var kRSubmitter = /^(?:submit|button|image|reset)$/i
 
 // node names which could be successful controls
-var kRSuccessControll = /^(?:input|select|textarea|keygen)/i
+var kRSuccessControll = /^(?:input|select|textarea|keygen|file)/i
 
 // Matches bracket notation.
 var brackets = /(\[[^[\]]*\])/g
@@ -75,7 +75,14 @@ function serialize(form: HTMLFormElement, options: OptionsHash) {
     }
 
     var key = element.name
-    var val = element.value
+    let val = element.value
+    if (element.type === 'file') {
+      if (element.multiple) {
+        val = Array.from(element.files)
+      } else {
+        val = Array.from(element.files)[0]
+      }
+    }
 
     // we can't just use element.value for checkboxes cause some browsers lie to us
     // they say "on" for value when the box isn't checked

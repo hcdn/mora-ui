@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { FileUpload } from '..'
 import { Box } from '../../Box/Box'
 import { Button } from '../../Button/Button'
 import { Text } from '../../Text/Text'
@@ -65,6 +66,41 @@ export const SerializedForm = () => {
           name='details[nationality]'
         />
         <Button span={2} label='Submit' type='submit' />
+      </Box>
+      <Box mt={6}>
+        <Text>Result: {debugFormResult}</Text>
+      </Box>
+    </Form>
+  )
+}
+
+export const WithFiles = () => {
+  const [debugFormResult, setFormResult] = useState('')
+  interface FormData {
+    myFile: File
+    otherFiles: File[]
+  }
+  const handleSubmit: SerializedFormEvent<FormData> = ({ values }) => {
+    // debug
+    const debugResult = {
+      myFile: values.myFile.name,
+      otherFiles: values.otherFiles.map((file) => file.name)
+    }
+    setFormResult(JSON.stringify(debugResult))
+  }
+  return (
+    <Form serialize onSubmit={handleSubmit}>
+      <Box space={4} flex direction='column'>
+        <FileUpload name='myFile' label='Upload an example file' required />
+        <FileUpload
+          name='otherFiles'
+          label='Upload multiple files'
+          multiple
+          required
+        />
+        <Button mt={4} type='submit'>
+          Submit
+        </Button>
       </Box>
       <Box mt={6}>
         <Text>Result: {debugFormResult}</Text>
