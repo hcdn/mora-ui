@@ -7,12 +7,10 @@
 [![License](https://img.shields.io/github/license/hcdn/mora-ui?style=flat)](https://github.com/hcdn/mora-ui/blob/main/LICENSE)
 [![Github](https://shields.io/badge/hcdn-mora--ui-blue?logo=github&style=flat)](https://github.com/hcdn/mora-ui)
 
-[DOCS](https://main--614c815a6d4096003a977ae9.chromatic.com/?path=/docs/)
-
 ## Install
 
 ```bash
-npm install --save mora-ui
+npm i mora-ui styled-components
 ```
 
 ## Usage
@@ -20,18 +18,27 @@ npm install --save mora-ui
 ```tsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import {Box, Text} from 'mora-ui'
+
+import {Box, Text, defaultLightTheme, MoraGlobalStyle} from 'mora-ui'
+import { ThemeProvider } from 'styled-components'
 
 function App() {
   return (
-    <Box p={4}>
-      <Text variant='h6'>MORA UI</Text>
-    </Box>
+    <ThemeProvider theme={defaultLightTheme}>
+      <MoraGlobalStyle />
+      <Box p={4}>
+        <Text variant='h6'>MORA UI</Text>
+      </Box>
+    </ThemeProvider>
   );
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
+
+## Documentation
+
+[Documentation Storybook](https://main--614c815a6d4096003a977ae9.chromatic.com/?path=/docs/)
 
 ## License
 

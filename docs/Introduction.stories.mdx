@@ -23,7 +23,7 @@ import Logo from './images/mora-ui-logo.png'
 ## Install
 
 ```bash
-npm install --save mora-ui
+npm i mora-ui styled-components
 ```
 
 ## Usage
@@ -31,13 +31,18 @@ npm install --save mora-ui
 ```tsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import {Box, Text} from 'mora-ui'
+
+import {Box, Text, defaultLightTheme, MoraGlobalStyle} from 'mora-ui'
+import { ThemeProvider } from 'styled-components'
 
 function App() {
   return (
-    <Box p={4}>
-      <Text variant='h6'>MORA UI</Text>
-    </Box>
+    <ThemeProvider theme={defaultLightTheme}>
+      <MoraGlobalStyle />
+      <Box p={4}>
+        <Text variant='h6'>MORA UI</Text>
+      </Box>
+    </ThemeProvider>
   );
 }
 
