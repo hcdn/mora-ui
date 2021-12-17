@@ -44,8 +44,25 @@ export const Controlled = () => {
   const handleChange: OnChangeFunction = ({ e }) => {
     setChecked({ ...checked, [e.target.name]: e.target.checked })
   }
+  const handleChangeAll = (checked: boolean) => {
+    setChecked((p) => {
+      const newChecked = { ...p }
+      Object.keys(p).forEach((key) => {
+        newChecked[key] = checked
+      })
+      return newChecked
+    })
+  }
+  const allChecked = Object.values(checked).every((c) => c)
+  const intermediate = Object.values(checked).some((c) => c) && !allChecked
   return (
     <>
+      <Checkbox
+        label='All'
+        checked={allChecked}
+        intermediate={intermediate}
+        onChange={() => handleChangeAll(!allChecked)}
+      />
       <Checkbox
         name='A'
         label='Option A'

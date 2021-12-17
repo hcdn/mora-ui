@@ -44,8 +44,9 @@ export class Checkbox extends MoraInput<CheckboxProps, {}> {
     return checked
   }
 
-  getIcon = () => {
-    const isChecked = this.getValue()
+  getIcon = (propChecked?: boolean) => {
+    const isChecked =
+      typeof propChecked === 'undefined' ? this.getValue() : propChecked
     const inputState: 'intermediateIcon' | 'checkedIcon' | 'icon' = this.props
       .intermediate
       ? 'intermediateIcon'
@@ -83,7 +84,7 @@ export class Checkbox extends MoraInput<CheckboxProps, {}> {
     const { value, checked, defaultChecked, name, className, label, children } =
       this.props
 
-    const CheckIcon = this.getIcon()
+    const CheckIcon = this.getIcon(checked)
 
     return (
       <CheckboxContainer
